@@ -20,6 +20,7 @@ public class StudentController {
     public ResponseEntity<StudentEntity> getStudentById(@RequestParam Long id) {
         return new ResponseEntity<>(  studentService.findById(id), HttpStatus.OK);
     }
+   
 
 
     @PostMapping

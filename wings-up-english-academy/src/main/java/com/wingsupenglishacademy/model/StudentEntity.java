@@ -3,12 +3,13 @@ package com.wingsupenglishacademy.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
 
 @Entity
-@Table(name="student")
+@Table(name="students")
 public class StudentEntity extends UsuarioEntity implements Serializable  {
     private static final long serialVersionUID = 1L;
 
@@ -16,7 +17,9 @@ public class StudentEntity extends UsuarioEntity implements Serializable  {
     private String enroll;
     @Column(nullable = false)
     private Double grade ;
-    //private Turma turma;
+
+//    @OneToOne
+//    private ClassEntity classEntity;
 
 
     public StudentEntity( Long id, String name, String email, String telephone,String enroll, Double grade) {

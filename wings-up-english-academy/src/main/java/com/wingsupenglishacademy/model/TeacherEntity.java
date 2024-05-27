@@ -1,8 +1,6 @@
 package com.wingsupenglishacademy.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,7 +18,10 @@ public class TeacherEntity extends UsuarioEntity implements Serializable {
     private String specialization;
     @Column( nullable = false)
     private Date horarioAula;
-    // private Turma turma;
+
+
+    @OneToOne(mappedBy = "teacher")
+    private  ClassEntity classEntity;
 
 
     public TeacherEntity() {
@@ -33,12 +34,28 @@ public class TeacherEntity extends UsuarioEntity implements Serializable {
         this.horarioAula = horarioAula;
     }
 
+    public TeacherEntity(Long id, String name, String email, String telephone, Double salary, String specialization, Date horarioAula, ClassEntity classEntity) {
+        super(id, name, email, telephone);
+        this.salary = salary;
+        this.specialization = specialization;
+        this.horarioAula = horarioAula;
+        this.classEntity = classEntity;
+    }
+
     public Double getSalary() {
         return salary;
     }
 
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    public ClassEntity getClassEntity() {
+        return classEntity;
+    }
+
+    public void setClassEntity(ClassEntity classEntity) {
+        this.classEntity = classEntity;
     }
 
     public String getSpecialization() {
