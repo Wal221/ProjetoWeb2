@@ -15,12 +15,11 @@ public class ClassEntity implements Serializable {
     private Long id;
 
     private String name;
-
     @OneToOne
     private TeacherEntity teacherEntity;
 
-    @OneToOne
-    private StudentEntity studentEntity;
+    @OneToMany
+    private List<StudentEntity> studentEntity;
 
     //private MateriaisDidaticos materiasididaticos;
 
@@ -32,7 +31,7 @@ public class ClassEntity implements Serializable {
         this.id = id;
         this.name = name;
         this.teacherEntity = teacherEntity;
-        this.studentEntity = studentEntity;
+        this.studentEntity = (List<StudentEntity>) studentEntity;
     }
 
     public Long getId() {
@@ -60,11 +59,11 @@ public class ClassEntity implements Serializable {
     }
 
     public StudentEntity getStudentEntity() {
-        return studentEntity;
+        return (StudentEntity) studentEntity;
     }
 
     public void setStudentEntity( StudentEntity studentEntity) {
-        this.studentEntity = studentEntity;
+        this.studentEntity = (List<StudentEntity>) studentEntity;
     }
 
 }

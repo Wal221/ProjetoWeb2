@@ -1,10 +1,7 @@
 package com.wingsupenglishacademy.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
@@ -17,7 +14,7 @@ public class StudentEntity extends UsuarioEntity implements Serializable  {
     private String enroll;
     @Column(nullable = false)
     private Double grade ;
-    @OneToOne(mappedBy = "teacherEntity")
+    @ManyToOne
     private ClassEntity classEntity;
     public StudentEntity() {
         super();
