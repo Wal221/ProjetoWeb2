@@ -3,6 +3,7 @@ package com.wingsupenglishacademy.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
@@ -16,18 +17,17 @@ public class StudentEntity extends UsuarioEntity implements Serializable  {
     private String enroll;
     @Column(nullable = false)
     private Double grade ;
-    //private Turma turma;
+    @OneToOne(mappedBy = "teacherEntity")
+    private ClassEntity classEntity;
+    public StudentEntity() {
+        super();
+    }
 
-
-    public StudentEntity( Long id, String name, String email, String telephone,String enroll, Double grade) {
+    public StudentEntity(Long id, String name, String email, String telephone, String enroll, Double grade, ClassEntity classEntity) {
         super(id,name,email,telephone);
         this.enroll = enroll;
         this.grade = grade;
-    }
-
-    public StudentEntity() {
-        super();
-
+        this.classEntity = classEntity;
     }
 
     public Double getGrade() {
@@ -44,6 +44,13 @@ public class StudentEntity extends UsuarioEntity implements Serializable  {
 
     public void setEnroll(String enroll) {
         this.enroll = enroll;
+    }
+
+    public ClassEntity getClassEntity() {
+        return classEntity;
+    }
+    public void setClassEntity(ClassEntity classEntity) {
+        this.classEntity = classEntity;
     }
 
 }
