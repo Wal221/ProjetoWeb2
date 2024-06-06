@@ -9,26 +9,28 @@ import java.util.List;
 
 @Service
 public class StudentService {
+
+
     @Autowired
     private StudentRepository studentRepository;
 
-    public StudentEntity findById(Long id) {
+    public StudentEntity findByIdStudent(Long id) {
         return studentRepository.findById(id).get();
     }
 
-    public List<StudentEntity> findAll() {
+    public List<StudentEntity> findAllStudent() {
         return studentRepository.findAll();
     }
 
-    public StudentEntity save(StudentEntity studentEntity) {
+    public StudentEntity createdStudent(StudentEntity studentEntity) {
         return studentRepository.save(studentEntity);
     }
 
-    public StudentEntity update(StudentEntity studentEntity) {
+    public StudentEntity updateStudent(StudentEntity studentEntity) {
         return studentRepository.save(studentEntity);
     }
 
-    public void delete(StudentEntity studentEntity) {
+    public void deleteStudent(StudentEntity studentEntity) {
         studentRepository.delete(studentEntity);
     }
 }

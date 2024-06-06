@@ -28,7 +28,11 @@ public class ClassRepositoryTest {
 
     @Test
     @DisplayName("Teste de adicionar turma com sucesso")
-    void classFindById(){
+    void classFindByIdCase1(){
+      ClassEntity classEntity = new ClassEntity(null,new Date(),"Ingles intermediario", "Livro", null,null);
+      this.createdClass(classEntity);
+      Optional<ClassEntity> classEntityOptional = repository.findById(classEntity.getId());
+      assertThat(classEntityOptional.isPresent()).isTrue();
 
     }
 

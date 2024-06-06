@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("student")
+@RequestMapping("/student")
 public class StudentController {
 
     @Autowired
@@ -18,37 +18,37 @@ public class StudentController {
 
     @GetMapping(value = "{id}")
     public ResponseEntity<StudentEntity> getStudentById(@RequestParam Long id) {
-        return new ResponseEntity<>(  studentService.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(  studentService.findByIdStudent(id), HttpStatus.OK);
     }
    
 
 
     @PostMapping
     public ResponseEntity<StudentEntity> createStudent(@RequestBody StudentEntity student) {
-        return new ResponseEntity<>(studentService.save(student), HttpStatus.CREATED);
+        return new ResponseEntity<>(studentService.createdStudent(student), HttpStatus.CREATED);
     }
 
 
     @PutMapping(value = "update")
     public ResponseEntity<StudentEntity> updateStudent(@RequestBody StudentEntity student) {
-        return new ResponseEntity<>(studentService.update(student), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.updateStudent(student), HttpStatus.OK);
     }
 
 
 
     @DeleteMapping
     public ResponseEntity<StudentEntity> deleteStudent(@RequestParam Long id) {
-        StudentEntity student = studentService.findById(id);
+        StudentEntity student = studentService.findByIdStudent(id);
         if(student != null) {
-            studentService.delete(student);
+            studentService.deleteStudent(student);
         }
          return ResponseEntity.ok().build();
 
     }
 
-    @GetMapping(value = "/studets")
+    @GetMapping(value = "/students")
     public ResponseEntity<List<StudentEntity>> getAllStudents() {
-        return ResponseEntity.ok().body(studentService.findAll());
+        return ResponseEntity.ok().body(studentService.findAllStudent());
     }
 
 
