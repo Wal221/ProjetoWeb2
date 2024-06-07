@@ -1,12 +1,14 @@
 package com.wingsupenglishacademy.model;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.io.Serializable;
 
 @Entity
-@Table(name="student")
+@Table(name="students")
 public class StudentEntity extends UsuarioEntity implements Serializable  {
     private static final long serialVersionUID = 1L;
 
@@ -14,17 +16,20 @@ public class StudentEntity extends UsuarioEntity implements Serializable  {
     private String enroll;
     @Column(nullable = false)
     private Double grade ;
-    @ManyToOne
-    private ClassEntity classEntity;
-    public StudentEntity() {
-        super();
-    }
 
-    public StudentEntity(Long id, String name, String email, String telephone, String enroll, Double grade, ClassEntity classEntity) {
+//    @OneToOne
+//    private ClassEntity classEntity;
+
+
+    public StudentEntity( Long id, String name, String email, String telephone,String enroll, Double grade) {
         super(id,name,email,telephone);
         this.enroll = enroll;
         this.grade = grade;
-        this.classEntity = classEntity;
+    }
+
+    public StudentEntity() {
+        super();
+
     }
 
     public Double getGrade() {
@@ -41,13 +46,6 @@ public class StudentEntity extends UsuarioEntity implements Serializable  {
 
     public void setEnroll(String enroll) {
         this.enroll = enroll;
-    }
-
-    public ClassEntity getClassEntity() {
-        return classEntity;
-    }
-    public void setClassEntity(ClassEntity classEntity) {
-        this.classEntity = classEntity;
     }
 
 }

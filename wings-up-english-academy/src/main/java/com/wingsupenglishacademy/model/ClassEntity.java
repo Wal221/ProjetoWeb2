@@ -1,37 +1,55 @@
 package com.wingsupenglishacademy.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="class")
+@Table
 public class ClassEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Column(nullable = false)
+    private Date classSchedule;//horario aula
+
+    @Column(nullable = false)
+    private String englishLevel;
+
+    @Column(nullable = false)
+    private String teachingMaterials; //materiais didaticos
+
+
+
+    @JoinColumn(name = "teacherID")
     @OneToOne
-    private TeacherEntity teacherEntity;
+    private TeacherEntity teacher;
 
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @OneToMany
-    private List<StudentEntity> studentEntity;
+    @JoinColumn(name = "class_id")
+    private List<StudentEntity> students = new ArrayList<>();
 
-    //private MateriaisDidaticos materiasididaticos;
 
     public ClassEntity() {
-
     }
 
-    public ClassEntity(Long id, String name, TeacherEntity teacherEntity,  StudentEntity studentEntity ){
+    public ClassEntity(Long id, Date classSchedule, String englishLevel, String teachingMaterials, TeacherEntity teacher, List<StudentEntity> students) {
         this.id = id;
-        this.name = name;
-        this.teacherEntity = teacherEntity;
-        this.studentEntity = (List<StudentEntity>) studentEntity;
+        this.classSchedule = classSchedule;
+        this.englishLevel = englishLevel;
+        this.teachingMaterials = teachingMaterials;
+        this.teacher = teacher;
+        this.students = students;
     }
 
     public Long getId() {
@@ -42,28 +60,43 @@ public class ClassEntity implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Date getclassSchedule() {
+        return classSchedule;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClassSchedule(Date classSchedule) {
+        this.classSchedule = classSchedule;
     }
 
-    public TeacherEntity getTeacherEntity() {
-        return teacherEntity;
+    public String getEnglishLevel() {
+        return englishLevel;
     }
 
-    public void setTeacherEntity(TeacherEntity teacherEntity) {
-        this.teacherEntity = teacherEntity;
+    public void setEnglishLevel(String englishLevel) {
+        this.englishLevel = englishLevel;
     }
 
-    public StudentEntity getStudentEntity() {
-        return (StudentEntity) studentEntity;
+    public String getTeachingMaterials() {
+        return teachingMaterials;
     }
 
-    public void setStudentEntity( StudentEntity studentEntity) {
-        this.studentEntity = (List<StudentEntity>) studentEntity;
+    public void setTeachingMaterials(String teachingMaterials) {
+        this.teachingMaterials = teachingMaterials;
     }
 
+    public TeacherEntity getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(TeacherEntity teacher) {
+        this.teacher = teacher;
+    }
+
+    public List<StudentEntity> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<StudentEntity> students) {
+        this.students = students;
+    }
 }
