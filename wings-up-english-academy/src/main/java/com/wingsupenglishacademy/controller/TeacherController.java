@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "teacher")
+@RequestMapping(value = "/teacher")
 public class TeacherController {
 
     @Autowired
     private TeacherService TeacherService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<TeacherEntity> getStudentById(@RequestParam Long id) {
+    public ResponseEntity<TeacherEntity> getStudentById(@PathVariable Long id) {
         return new ResponseEntity<>(  TeacherService.getTeacherById(id), HttpStatus.OK);
     }
 
@@ -36,7 +36,7 @@ public class TeacherController {
 
 
     @DeleteMapping
-    public ResponseEntity<TeacherEntity> deleteStudent(@RequestParam Long id) {
+    public ResponseEntity<TeacherEntity> deleteStudent(@PathVariable Long id) {
         TeacherEntity student = TeacherService.getTeacherById(id);
         if(student != null) {
             TeacherService.deleteTeacher(id);
