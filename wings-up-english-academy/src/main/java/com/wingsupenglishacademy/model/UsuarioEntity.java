@@ -1,3 +1,4 @@
+
 package com.wingsupenglishacademy.model;
 
 import jakarta.persistence.*;

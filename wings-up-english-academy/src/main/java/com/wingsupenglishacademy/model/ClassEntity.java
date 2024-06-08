@@ -1,5 +1,6 @@
 package com.wingsupenglishacademy.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -29,11 +30,12 @@ public class ClassEntity implements Serializable {
 
 
     @JoinColumn(name = "teacherID")
-    @OneToOne(optional = true)
+    @OneToOne
     private TeacherEntity teacher;
 
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @OneToMany
     @JoinColumn(name = "class_id")
     private List<StudentEntity> students = new ArrayList<>();
 
