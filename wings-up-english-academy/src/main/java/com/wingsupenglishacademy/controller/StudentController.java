@@ -16,7 +16,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<StudentEntity> getStudentById(@RequestParam Long id) {
         return new ResponseEntity<>(  studentService.findByIdStudent(id), HttpStatus.OK);
     }
@@ -29,7 +29,7 @@ public class StudentController {
     }
 
 
-    @PutMapping(value = "update")
+    @PutMapping(value = "/update")
     public ResponseEntity<StudentEntity> updateStudent(@RequestBody StudentEntity student) {
         return new ResponseEntity<>(studentService.updateStudent(student), HttpStatus.OK);
     }
