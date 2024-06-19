@@ -21,7 +21,7 @@ public class TeacherEntity extends UsuarioEntity implements Serializable {
     private Date horarioAula;
 
 
-    @JsonIgnore //  não e a melhor solução 
+    @JsonIgnore //  não e a melhor solução
     @OneToOne(mappedBy = "teacher")
     private  ClassEntity classEntity;
 

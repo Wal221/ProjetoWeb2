@@ -1,5 +1,6 @@
 package com.wingsupenglishacademy.controller;
 
+import com.wingsupenglishacademy.DTO.StudentDTO;
 import com.wingsupenglishacademy.model.StudentEntity;
 import com.wingsupenglishacademy.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,17 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+//    @GetMapping(value = "/{id}")
+//    public ResponseEntity<StudentEntity> getStudentById(@PathVariable Long id) {
+//        return new ResponseEntity<>(  studentService.findByIdStudent(id), HttpStatus.OK);
+//    }
+
     @GetMapping(value = "/{id}")
-    public ResponseEntity<StudentEntity> getStudentById(@PathVariable Long id) {
-        return new ResponseEntity<>(  studentService.findByIdStudent(id), HttpStatus.OK);
+    public ResponseEntity<StudentDTO> getStudentByI(@PathVariable Long id) {
+      StudentEntity saved = studentService.findByIdStudent(id);
+        StudentDTO  studentDTO = new StudentDTO(saved);
+        return new ResponseEntity<>(studentDTO, HttpStatus.OK);
+
     }
    
 
