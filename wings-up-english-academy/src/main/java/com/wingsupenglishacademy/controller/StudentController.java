@@ -1,6 +1,7 @@
 package com.wingsupenglishacademy.controller;
 
 import com.wingsupenglishacademy.DTO.StudentDTO;
+import com.wingsupenglishacademy.mapper.DozerMapper;
 import com.wingsupenglishacademy.model.StudentEntity;
 import com.wingsupenglishacademy.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,14 @@ public class StudentController {
 
 
     @PostMapping
-    public ResponseEntity<StudentEntity> createStudent(@RequestBody StudentEntity student) {
-        return new ResponseEntity<>(studentService.createdStudent(student), HttpStatus.CREATED);
+    public ResponseEntity<StudentDTO> createStudent(@RequestBody StudentDTO student) {
+
+        // nessas primeira etapa eu converto um studentDTO para um studanteEntity
+        var entity = DozerMapper.parseObject(student, StudentEntity.class);
+         studentService.createdStudent(entity);
+         // Apos salva, como preciso retorna um studantDTO realizo a conversão novamente
+        var entityDTO = DozerMapper.parseObject(entity, StudentDTO.class);
+        return new ResponseEntity<>(entityDTO, HttpStatus.CREATED);
     }
 
 
