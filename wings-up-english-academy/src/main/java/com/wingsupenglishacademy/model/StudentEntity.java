@@ -15,7 +15,7 @@ public class StudentEntity extends UsuarioEntity implements Serializable  {
     @Column(nullable = false)
     private String enroll;
     @Column(nullable = false)
-    private Double grade ;
+    private Double grade  = 0.0 ;
 
 //    @OneToOne
 //    private ClassEntity classEntity;

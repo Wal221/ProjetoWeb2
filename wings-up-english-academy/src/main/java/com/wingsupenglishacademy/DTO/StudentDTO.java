@@ -1,25 +1,34 @@
 package com.wingsupenglishacademy.DTO;
 
 
+import com.github.dozermapper.core.Mapping;
 import com.wingsupenglishacademy.model.StudentEntity;
 
 public class StudentDTO {
 
+    @Mapping("id")
     private Long id;
     private String name;
-    //private String email;
-   // private String telephone;
-    //private String enroll;
-    private Double grade;
+    private String email;
+    private String telephone;
+    private String enroll;
+
 
 
     public StudentDTO() {
     }
 
+    public StudentDTO(Long id, String name, String email, String telephone, String enroll, Double grade) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.telephone = telephone;
+        this.enroll = enroll;
+    }
+
     public StudentDTO(StudentEntity studentEntity) {
         this.id = studentEntity.getId();
         this.name = studentEntity.getName();
-        this.grade = studentEntity.getGrade();
     }
 
     public Long getId() {
@@ -38,36 +47,28 @@ public class StudentDTO {
         this.name = name;
     }
 
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-//
-//    public String getTelephone() {
-//        return telephone;
-//    }
-//
-//    public void setTelephone(String telephone) {
-//        this.telephone = telephone;
-//    }
-//
-//    public String getEnroll() {
-//        return enroll;
-//    }
-//
-//    public void setEnroll(String enroll) {
-//        this.enroll = enroll;
-//    }
-
-    public Double getGrade() {
-        return grade;
+    public String getEmail() {
+        return email;
     }
 
-    public void setGrade(Double grade) {
-        this.grade = grade;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getEnroll() {
+        return enroll;
+    }
+
+    public void setEnroll(String enroll) {
+        this.enroll = enroll;
     }
 
     @Override
@@ -75,7 +76,6 @@ public class StudentDTO {
         return "StudentDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", grade=" + grade +
                 '}';
     }
 }
