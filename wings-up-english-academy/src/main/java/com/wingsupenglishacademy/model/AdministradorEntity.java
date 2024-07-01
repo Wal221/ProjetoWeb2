@@ -18,8 +18,8 @@ public class AdministradorEntity extends UsuarioEntity implements Serializable {
     @Column(nullable = false)
     private Double grade ;
 
-    public AdministradorEntity(Long id, String name, String enroll, Double grade) {
-        super(id, name);
+    public AdministradorEntity(Long id, String name, String enroll, Double grade, String email, String telephone) {
+        super(id, name, email, telephone);
         this.enroll = enroll;
         this.grade = grade;
     }
