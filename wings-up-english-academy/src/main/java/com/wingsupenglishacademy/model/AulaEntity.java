@@ -2,6 +2,7 @@ package com.wingsupenglishacademy.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
@@ -12,6 +13,8 @@ import java.util.Date;
 public class AulaEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Id
+    private Long id;
     @Column(nullable = false)
     private String enroll;
 
