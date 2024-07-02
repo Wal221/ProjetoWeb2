@@ -1,32 +1,76 @@
 package com.wingsupenglishacademy.DTO;
 
-
-import com.wingsupenglishacademy.model.ClassEntity;
-
+import com.github.dozermapper.core.Mapping;
+import java.io.Serializable;
 import java.util.Date;
 
+public class RequestTeacherDTO implements Serializable {
 
-public class RequestTeacherDTO {
-    private Long key;
+    private static final long serialVersionUID = 1L;
+
+    @Mapping("id")
+    private Long id;
     private String name;
-    private String specialization;
+    private String especializacao;
     private String email;
-    private ClassEntity classEntity;
+    private Long classEntity;
     private Double salary;
     private Date horarioAula;
+    private String telephone;
 
-    public RequestTeacherDTO() {
-    }
+    public RequestTeacherDTO() {}
 
-
-    public RequestTeacherDTO(Long key, String name, String specialization, String email, ClassEntity classEntity, Double salary, Date horarioAula) {
-        this.key = key;
+    public RequestTeacherDTO(Long id, String name, String specialization, String email, Long classEntity, Double salary, Date horarioAula, String telephone) {
+        this.id = id;
         this.name = name;
-        this.specialization = specialization;
+        this.especializacao = specialization;
         this.email = email;
         this.classEntity = classEntity;
         this.salary = salary;
         this.horarioAula = horarioAula;
+        this.telephone = telephone;
+    }
+
+    // Getters e setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEspecializacao() {
+        return especializacao;
+    }
+
+    public void setEspecializacao(String especializacao) {
+        this.especializacao = especializacao;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getClassEntity() {
+        return classEntity;
+    }
+
+    public void setClassEntity(Long classEntity) {
+        this.classEntity = classEntity;
     }
 
     public Double getSalary() {
@@ -45,44 +89,11 @@ public class RequestTeacherDTO {
         this.horarioAula = horarioAula;
     }
 
-    public String getName() {
-        return name;
+    public String getTelephone() {
+        return telephone;
     }
 
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getKey() {
-        return key;
-    }
-
-    public void setKey(Long key) {
-        this.key = key;
-    }
-
-    public ClassEntity getClassEntity() {
-        return classEntity;
-    }
-
-    public void setClassEntity(ClassEntity classEntity) {
-        this.classEntity = classEntity;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }
