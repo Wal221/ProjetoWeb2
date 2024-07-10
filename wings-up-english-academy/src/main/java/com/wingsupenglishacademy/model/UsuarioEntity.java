@@ -26,6 +26,11 @@ public  abstract class UsuarioEntity {
         this.telephone = telephone;
     }
 
+    public UsuarioEntity(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
