@@ -1,7 +1,9 @@
 package com.wingsupenglishacademy.service;
 
-import com.wingsupenglishacademy.DTO.StudentDTO;
+import com.wingsupenglishacademy.DTO.RequestStudentDTO;
+import com.wingsupenglishacademy.DTO.ResponseStudentDTO;
 import com.wingsupenglishacademy.mapper.DozerMapper;
+import com.wingsupenglishacademy.mapper.custom.StudentMapper;
 import com.wingsupenglishacademy.model.StudentEntity;
 import com.wingsupenglishacademy.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private StudentMapper studentMapper;
+
     public StudentEntity findByIdStudent(Long id) {
         return studentRepository.findById(id).get();
     }
@@ -25,10 +30,10 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public StudentDTO createdStudent(StudentEntity studentDTO) {
-         var entity = DozerMapper.parseObject(studentDTO, StudentEntity.class);
-         studentRepository.save(entity);
-         return DozerMapper.parseObject(entity, StudentDTO.class);
+    public ResponseStudentDTO createdStudent(RequestStudentDTO studentDTO) {
+        var entity = studentMapper.convertToStudentDTO(studentDTO);
+        studentRepository.save(entity);
+        return studentMapper.convertToEntityStudentDTO(entity);
     }
 
     public StudentEntity updateStudent(StudentEntity studentEntity) {
