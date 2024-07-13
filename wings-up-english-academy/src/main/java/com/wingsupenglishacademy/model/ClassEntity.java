@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "turma")
 public class ClassEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,8 +35,7 @@ public class ClassEntity implements Serializable {
 
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    @OneToMany
-    @JoinColumn(name = "class_id")
+    @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<StudentEntity> students = new ArrayList<>();
 
 
