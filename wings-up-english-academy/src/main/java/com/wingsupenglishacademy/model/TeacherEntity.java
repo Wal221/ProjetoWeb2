@@ -15,8 +15,10 @@ public class TeacherEntity extends UsuarioEntity implements Serializable {
 
     @Column( nullable = false)
     private Double salary;
-    @Column( nullable = true)
-    private String specialization;
+
+    @Column( nullable = false)
+    private String especializacao;
+    
     @Column( nullable = false)
     private Date horarioAula;
 
@@ -29,17 +31,10 @@ public class TeacherEntity extends UsuarioEntity implements Serializable {
     public TeacherEntity() {
     }
 
-    public TeacherEntity(Long id, String name, String email, String telephone,Double salary, String specialization, Date horarioAula) {
+    public TeacherEntity(Long id, String name, String email, String telephone, Double salary, String especializacao, Date horarioAula, ClassEntity classEntity) {
         super(id, name, email, telephone);
         this.salary = salary;
-        this.specialization = specialization;
-        this.horarioAula = horarioAula;
-    }
-
-    public TeacherEntity(Long id, String name, String email, String telephone, Double salary, String specialization, Date horarioAula, ClassEntity classEntity) {
-        super(id, name, email, telephone);
-        this.salary = salary;
-        this.specialization = specialization;
+        this.especializacao = especializacao;
         this.horarioAula = horarioAula;
         this.classEntity = classEntity;
     }
@@ -60,12 +55,12 @@ public class TeacherEntity extends UsuarioEntity implements Serializable {
         this.classEntity = classEntity;
     }
 
-    public String getSpecialization() {
-        return specialization;
+    public String getEspecializacao() {
+        return especializacao;
     }
 
-    public void setSpecialization(String specialization) {
-        specialization = specialization;
+    public void setEspecializacao(String especializacao) {
+        this.especializacao = especializacao;
     }
 
     public Date getHorarioAula() {
