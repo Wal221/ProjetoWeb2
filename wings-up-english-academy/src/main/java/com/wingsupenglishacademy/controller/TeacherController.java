@@ -18,7 +18,7 @@ public class TeacherController {
 
     @Autowired
     private TeacherService TeacherService;
-    
+
     @GetMapping(value = "/DTO/{id}")
     public ResponseEntity<ResponseTeacherDTO> findTeacherByIdDTO(@PathVariable Long id) {
         return new ResponseEntity<>(  TeacherService.findByIdTeacher(id), HttpStatus.OK);
