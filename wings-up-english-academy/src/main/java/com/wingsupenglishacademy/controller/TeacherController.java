@@ -1,9 +1,12 @@
 package com.wingsupenglishacademy.controller;
 
+import com.wingsupenglishacademy.DTO.RequestTeacherDTO;
+import com.wingsupenglishacademy.DTO.ResponseTeacherDTO;
 import com.wingsupenglishacademy.model.TeacherEntity;
 import com.wingsupenglishacademy.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,29 +18,29 @@ public class TeacherController {
 
     @Autowired
     private TeacherService TeacherService;
-
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<TeacherEntity> getStudentById(@PathVariable Long id) {
-        return new ResponseEntity<>(  TeacherService.getTeacherById(id), HttpStatus.OK);
+    
+    @GetMapping(value = "/DTO/{id}")
+    public ResponseEntity<ResponseTeacherDTO> findTeacherByIdDTO(@PathVariable Long id) {
+        return new ResponseEntity<>(  TeacherService.findByIdTeacher(id), HttpStatus.OK);
     }
 
 
-    @PostMapping(value = "/save")
-    public ResponseEntity<TeacherEntity> createStudent(@RequestBody TeacherEntity teacher) {
-        return new ResponseEntity<>(TeacherService.saveTeacher(teacher), HttpStatus.CREATED);
+    @PostMapping(value = "/create-professor")
+    public ResponseEntity<ResponseTeacherDTO> createTeacher(@RequestBody RequestTeacherDTO teacher) {
+        return new ResponseEntity<>(TeacherService.createdTeacher(teacher), HttpStatus.CREATED);
     }
 
 
     @PutMapping(value = "/update")
-    public ResponseEntity<TeacherEntity> updateStudent(@RequestBody TeacherEntity student) {
+    public ResponseEntity<TeacherEntity> updateTeacher(@RequestBody TeacherEntity student) {
         return new ResponseEntity<>(TeacherService.updateTeacher(student), HttpStatus.OK);
     }
 
 
 
     @DeleteMapping
-    public ResponseEntity<TeacherEntity> deleteStudent(@PathVariable Long id) {
-        TeacherEntity student = TeacherService.getTeacherById(id);
+    public ResponseEntity<ResponseTeacherDTO> deleteTeacher(@PathVariable Long id) {
+        ResponseTeacherDTO student = TeacherService.findByIdTeacher(id);
         if(student != null) {
             TeacherService.deleteTeacher(id);
         }
