@@ -12,6 +12,10 @@ public class ResponseTeacherDTO implements Serializable {
     private Date horarioAula;
 
 
+    public ResponseTeacherDTO() {
+
+    }
+
     public ResponseTeacherDTO(String name, String specialization, Date horarioAula) {
         this.name = name;
         this.specialization = specialization;
