@@ -1,6 +1,7 @@
 package com.wingsupenglishacademy.controller;
 
-import com.wingsupenglishacademy.DTO.StudentDTO;
+import com.wingsupenglishacademy.DTO.RequestStudentDTO;
+import com.wingsupenglishacademy.DTO.ResponseStudentDTO;
 import com.wingsupenglishacademy.mapper.DozerMapper;
 import com.wingsupenglishacademy.model.StudentEntity;
 import com.wingsupenglishacademy.service.StudentService;
@@ -24,24 +25,19 @@ public class StudentController {
 //    }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<StudentDTO> getStudentByI(@PathVariable Long id) {
+    public ResponseEntity<RequestStudentDTO> getStudentByI(@PathVariable Long id) {
       StudentEntity saved = studentService.findByIdStudent(id);
-        StudentDTO  studentDTO = new StudentDTO(saved);
-        return new ResponseEntity<>(studentDTO, HttpStatus.OK);
+        RequestStudentDTO requestStudentDTO = new RequestStudentDTO(saved);
+        return new ResponseEntity<>(requestStudentDTO, HttpStatus.OK);
 
     }
    
 
 
-    @PostMapping
-    public ResponseEntity<StudentDTO> createStudent(@RequestBody StudentDTO student) {
+    @PostMapping(value = "/created")
+    public ResponseEntity<ResponseStudentDTO> createStudent(@RequestBody RequestStudentDTO studentDTO) {
 
-        // nessas primeira etapa eu converto um studentDTO para um studanteEntity
-        var entity = DozerMapper.parseObject(student, StudentEntity.class);
-         studentService.createdStudent(entity);
-         // Apos salva, como preciso retorna um studantDTO realizo a conversão novamente
-        var entityDTO = DozerMapper.parseObject(entity, StudentDTO.class);
-        return new ResponseEntity<>(entityDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(studentService.createdStudent(studentDTO), HttpStatus.CREATED);
     }
 
 
