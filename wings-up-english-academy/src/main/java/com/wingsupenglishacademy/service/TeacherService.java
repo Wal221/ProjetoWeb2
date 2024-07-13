@@ -35,7 +35,6 @@ public class TeacherService {
     }
 
     public ResponseTeacherDTO createdTeacher(RequestTeacherDTO teacherDTO) {
-
         // converto o DTO para class para pode Salvalo
         TeacherEntity teacherAux = mapper.convertToTeacherEntity(teacherDTO);
 
@@ -44,13 +43,10 @@ public class TeacherService {
         return responseTeacherDTO;
 
 
-
-
-
     }
 
     public TeacherEntity updateTeacher(TeacherEntity teacher) {
-        if (getTeacherById(teacher.getId()) != null) {
+        if (this.teacherRepository.findById(teacher.getId()) != null) {
             return teacherRepository.save(teacher);
         }
         return null;
@@ -60,11 +56,6 @@ public class TeacherService {
     public void deleteTeacher(Long id) {
         teacherRepository.deleteById(id);
     }
-
-
-
-
-
 
 
 }
