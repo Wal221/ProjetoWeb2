@@ -13,6 +13,6 @@ public class AdministradorService {
     @Autowired
     private AdministradorRepository administradorRepository;
 
-    
+
     public List<AdministradorEntity> listAll() {return administradorRepository.findAll(); }
 }
