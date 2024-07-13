@@ -38,7 +38,7 @@ public class ClassController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
+    @GetMapping(value = "/classes")
     public ResponseEntity<List<ClassEntity>> getAllClasses() {
         return new ResponseEntity<>(classService.findAll(), HttpStatus.OK);
     }
