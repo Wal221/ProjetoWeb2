@@ -1,6 +1,5 @@
 package com.wingsupenglishacademy.service;
 
-import com.wingsupenglishacademy.model.StudentEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,14 +8,12 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 @ActiveProfiles("test")
-class StudentServiceTest {
+class AlunoServiceTest {
 
     @Mock
-    private StudentService studentService;
+    private AlunoService alunoService;
 
 
     @BeforeEach
@@ -28,9 +25,9 @@ class StudentServiceTest {
     @Test
     @DisplayName("Estudante criado com sucesso")
     void createdStudentCase1() {
-//        StudentEntity student = new StudentEntity(1L,"teste","email@gmail","1234","2345",8.1);
+//        AlunoEntity student = new AlunoEntity(1L,"teste","email@gmail","1234","2345",8.1);
 //
-//        StudentEntity studentAux = studentService.createdStudent(student);
+//        AlunoEntity studentAux = studentService.createdStudent(student);
 //
 //        assertEquals(studentAux.getId(),student.getId());
 //        assertEquals(studentAux.getName(),student.getName());

@@ -2,7 +2,7 @@ package com.wingsupenglishacademy.DTO;
 
 
 import com.github.dozermapper.core.Mapping;
-import com.wingsupenglishacademy.model.StudentEntity;
+import com.wingsupenglishacademy.model.AlunoEntity;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -33,9 +33,9 @@ public class RequestStudentDTO implements Serializable {
         this.enroll = enroll;
     }
 
-    public RequestStudentDTO(StudentEntity studentEntity) {
-        this.id = studentEntity.getId();
-        this.name = studentEntity.getName();
+    public RequestStudentDTO(AlunoEntity alunoEntity) {
+        this.id = alunoEntity.getId();
+        this.name = alunoEntity.getName();
     }
 
     public Long getId() {

@@ -1,19 +1,16 @@
 package com.wingsupenglishacademy.repository;
 
-import com.wingsupenglishacademy.model.StudentEntity;
+import com.wingsupenglishacademy.model.AlunoEntity;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-
 
 
 @DataJpaTest
@@ -35,10 +32,10 @@ class StudentRepositoryTest {
     @Test
     @DisplayName("Retorna o sucesso de uma  busca de um usuario por ID") //
     void findByStudentCase1() {
-       StudentEntity student = new StudentEntity(null,"Walmir", "teste@gmail.com", "629991212","2032321", 8.1);
+       AlunoEntity student = new AlunoEntity(null,"Walmir", "teste@gmail.com", "629991212","2032321", 8.1);
        //student.setId(id);
-       StudentEntity studentAux = this.createdStudent(student);
-       Optional<StudentEntity>  result = studentRepository.findById(studentAux.getId());
+       AlunoEntity studentAux = this.createdStudent(student);
+       Optional<AlunoEntity>  result = studentRepository.findById(studentAux.getId());
 
        //Com isso ja vou conseguir verificar se a um estudante presente
         assertThat(result.isPresent()).isTrue();
@@ -47,7 +44,7 @@ class StudentRepositoryTest {
     @Test
     @DisplayName("Caso em que não encontra o usuario no banco de dados")
     void findByStudentCase2() {
-       Optional<StudentEntity>  result = studentRepository.findById(0L);
+       Optional<AlunoEntity>  result = studentRepository.findById(0L);
 
        //Com isso ja vou conseguir verificar se a um estudante presente
         assertThat(result.isEmpty()).isTrue();
@@ -58,7 +55,7 @@ class StudentRepositoryTest {
      /*
        Metodo auxilar do meu teste findByStudent
       */
-     private StudentEntity createdStudent(StudentEntity student ){
+     private AlunoEntity createdStudent(AlunoEntity student ){
          // essa não e a malhor forma de se fazer
          this.entityManager.persist(student);
 

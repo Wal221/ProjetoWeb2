@@ -2,9 +2,8 @@ package com.wingsupenglishacademy.service;
 
 import com.wingsupenglishacademy.DTO.RequestStudentDTO;
 import com.wingsupenglishacademy.DTO.ResponseStudentDTO;
-import com.wingsupenglishacademy.mapper.DozerMapper;
 import com.wingsupenglishacademy.mapper.custom.StudentMapper;
-import com.wingsupenglishacademy.model.StudentEntity;
+import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StudentService {
+public class AlunoService {
 
 
     @Autowired
@@ -21,12 +20,12 @@ public class StudentService {
     @Autowired
     private StudentMapper studentMapper;
 
-    public StudentEntity findByIdStudent(Long id) {
+    public AlunoEntity findByIdStudent(Long id) {
         return studentRepository.findById(id).get();
     }
 
 
-    public List<StudentEntity> findAllStudent() {
+    public List<AlunoEntity> findAllStudent() {
         return studentRepository.findAll();
     }
 
@@ -36,11 +35,11 @@ public class StudentService {
         return studentMapper.convertToEntityStudentDTO(entity);
     }
 
-    public StudentEntity updateStudent(StudentEntity studentEntity) {
-        return studentRepository.save(studentEntity);
+    public AlunoEntity updateStudent(AlunoEntity alunoEntity) {
+        return studentRepository.save(alunoEntity);
     }
 
-    public void deleteStudent(StudentEntity studentEntity) {
-        studentRepository.delete(studentEntity);
+    public void deleteStudent(AlunoEntity alunoEntity) {
+        studentRepository.delete(alunoEntity);
     }
 }

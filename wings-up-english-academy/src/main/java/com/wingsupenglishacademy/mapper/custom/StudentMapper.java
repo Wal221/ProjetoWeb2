@@ -2,9 +2,8 @@ package com.wingsupenglishacademy.mapper.custom;
 
 import com.wingsupenglishacademy.DTO.RequestStudentDTO;
 import com.wingsupenglishacademy.DTO.ResponseStudentDTO;
-import com.wingsupenglishacademy.model.StudentEntity;
-import com.wingsupenglishacademy.service.ClassService;
-import com.wingsupenglishacademy.service.StudentService;
+import com.wingsupenglishacademy.model.AlunoEntity;
+import com.wingsupenglishacademy.service.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,28 +11,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class StudentMapper {
     @Autowired
-     private ClassService turmaService;
+     private TurmaService turmaService;
 
-    public  StudentEntity convertToStudentDTO(RequestStudentDTO dto){
-       StudentEntity studentEntity = new StudentEntity();
-       studentEntity.setId(dto.getId());
-       studentEntity.setName(dto.getName());
-       studentEntity.setEnroll(dto.getEnroll());
-       studentEntity.setGrade(dto.getGrade());
-       studentEntity.setEmail(dto.getEmail());
-       studentEntity.setTelephone(dto.getTelephone());
+    public AlunoEntity convertToStudentDTO(RequestStudentDTO dto){
+       AlunoEntity alunoEntity = new AlunoEntity();
+       alunoEntity.setId(dto.getId());
+       alunoEntity.setName(dto.getName());
+       alunoEntity.setEnroll(dto.getEnroll());
+       alunoEntity.setGrade(dto.getGrade());
+       alunoEntity.setEmail(dto.getEmail());
+       alunoEntity.setTelephone(dto.getTelephone());
        //busco a turma por ID e ja adiciono na minha respectiva turma que o aluno pertence
-       studentEntity.setTurma(turmaService.findById(dto.getTurmaId()));
-       return studentEntity;
+       alunoEntity.setTurma(turmaService.findById(dto.getTurmaId()));
+       return alunoEntity;
 
     }
 
-    public ResponseStudentDTO convertToEntityStudentDTO(StudentEntity studentEntity){
+    public ResponseStudentDTO convertToEntityStudentDTO(AlunoEntity alunoEntity){
          ResponseStudentDTO  response =   new ResponseStudentDTO();
-         response.setName(studentEntity.getName());
-         response.setEnroll(studentEntity.getEnroll());
-         response.setEmail(studentEntity.getEmail());
-         response.setTelephone(studentEntity.getTelephone());
+         response.setName(alunoEntity.getName());
+         response.setEnroll(alunoEntity.getEnroll());
+         response.setEmail(alunoEntity.getEmail());
+         response.setTelephone(alunoEntity.getTelephone());
 
          return response;
     }

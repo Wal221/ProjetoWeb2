@@ -1,7 +1,6 @@
 package com.wingsupenglishacademy.model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -9,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "students")
-public class StudentEntity extends UsuarioEntity implements Serializable {
+public class AlunoEntity extends UsuarioEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(nullable = false)
@@ -20,27 +19,27 @@ public class StudentEntity extends UsuarioEntity implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "turma_id")
-    private ClassEntity turma;
+    private TurmaEntity turma;
 
 
 
-    public StudentEntity() {
+    public AlunoEntity() {
         super();
 
     }
 
 
-    public StudentEntity(Long id, String name, String email, String telephone, String enroll, Double grade) {
+    public AlunoEntity(Long id, String name, String email, String telephone, String enroll, Double grade) {
         super(id, name, email, telephone);
         this.enroll = enroll;
         this.grade = grade;
     }
 
-    public StudentEntity(Long id, String name, String email, String telephone ,String enroll, Double grade, ClassEntity classEntity) {
+    public AlunoEntity(Long id, String name, String email, String telephone , String enroll, Double grade, TurmaEntity turmaEntity) {
         super(id, name, email, telephone);
         this.enroll = enroll;
         this.grade = grade;
-        this.turma = classEntity;
+        this.turma = turmaEntity;
     }
 
 
@@ -61,17 +60,17 @@ public class StudentEntity extends UsuarioEntity implements Serializable {
     }
 
 
-    public ClassEntity getTurma() {
+    public TurmaEntity getTurma() {
         return turma;
     }
 
-    public void setTurma(ClassEntity turma) {
+    public void setTurma(TurmaEntity turma) {
         this.turma = turma;
     }
 
     @Override
     public String toString() {
-        return "StudentEntity{" +
+        return "AlunoEntity{" +
                 "enroll='" + enroll + '\'' +
                 ", grade=" + grade +
                 ", turma=" + turma +
@@ -87,7 +86,7 @@ public class StudentEntity extends UsuarioEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        StudentEntity that = (StudentEntity) o;
+        AlunoEntity that = (AlunoEntity) o;
         return Objects.equals(enroll, that.enroll) && Objects.equals(grade, that.grade) && Objects.equals(turma, that.turma);
     }
 

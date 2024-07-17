@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "teacher")
-public class TeacherEntity extends UsuarioEntity implements Serializable {
+public class ProfessorEntity extends UsuarioEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,18 +25,18 @@ public class TeacherEntity extends UsuarioEntity implements Serializable {
 
     @JsonIgnore //  não e a melhor solução
     @OneToOne(mappedBy = "teacher")
-    private  ClassEntity classEntity;
+    private TurmaEntity turmaEntity;
 
 
-    public TeacherEntity() {
+    public ProfessorEntity() {
     }
 
-    public TeacherEntity(Long id, String name, String email, String telephone, Double salary, String especializacao, Date horarioAula, ClassEntity classEntity) {
+    public ProfessorEntity(Long id, String name, String email, String telephone, Double salary, String especializacao, Date horarioAula, TurmaEntity turmaEntity) {
         super(id, name, email, telephone);
         this.salary = salary;
         this.especializacao = especializacao;
         this.horarioAula = horarioAula;
-        this.classEntity = classEntity;
+        this.turmaEntity = turmaEntity;
     }
 
     public Double getSalary() {
@@ -47,12 +47,12 @@ public class TeacherEntity extends UsuarioEntity implements Serializable {
         this.salary = salary;
     }
 
-    public ClassEntity getClassEntity() {
-        return classEntity;
+    public TurmaEntity getClassEntity() {
+        return turmaEntity;
     }
 
-    public void setClassEntity(ClassEntity classEntity) {
-        this.classEntity = classEntity;
+    public void setClassEntity(TurmaEntity turmaEntity) {
+        this.turmaEntity = turmaEntity;
     }
 
     public String getEspecializacao() {
