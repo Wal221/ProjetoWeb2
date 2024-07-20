@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.controller;
 
-import com.wingsupenglishacademy.DTO.RequestStudentDTO;
-import com.wingsupenglishacademy.DTO.ResponseStudentDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestAlunoDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseStudentDTO;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +24,17 @@ public class AlunoController {
 //    }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<RequestStudentDTO> getStudentByI(@PathVariable Long id) {
+    public ResponseEntity<RequestAlunoDTO> getStudentByI(@PathVariable Long id) {
       AlunoEntity saved = alunoService.findByIdStudent(id);
-        RequestStudentDTO requestStudentDTO = new RequestStudentDTO(saved);
-        return new ResponseEntity<>(requestStudentDTO, HttpStatus.OK);
+        RequestAlunoDTO requestAlunoDTO = new RequestAlunoDTO(saved);
+        return new ResponseEntity<>(requestAlunoDTO, HttpStatus.OK);
 
     }
    
 
 
     @PostMapping(value = "/created")
-    public ResponseEntity<ResponseStudentDTO> createStudent(@RequestBody RequestStudentDTO studentDTO) {
+    public ResponseEntity<ResponseStudentDTO> createStudent(@RequestBody RequestAlunoDTO studentDTO) {
 
         return new ResponseEntity<>(alunoService.createdStudent(studentDTO), HttpStatus.CREATED);
     }
