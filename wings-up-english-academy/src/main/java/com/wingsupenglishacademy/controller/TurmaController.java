@@ -1,5 +1,7 @@
 package com.wingsupenglishacademy.controller;
 
+import com.wingsupenglishacademy.DTO.requests.RequestTurmaDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseTurmaDTO;
 import com.wingsupenglishacademy.model.TurmaEntity;
 import com.wingsupenglishacademy.service.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,20 +12,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/class")
+@RequestMapping("/turma")
 public class TurmaController {
 
     @Autowired
     private TurmaService turmaService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<TurmaEntity> getClassById(@PathVariable Long id) {
-        return new ResponseEntity<>( turmaService.findById(id), HttpStatus.OK);
+    public ResponseEntity<ResponseTurmaDTO> getClassById(@PathVariable Long id) {
+        return new ResponseEntity<>( turmaService.findByIdTurma(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<TurmaEntity> createClass(@RequestBody TurmaEntity turmaEntity) {
-        return new ResponseEntity<>(turmaService.save(turmaEntity), HttpStatus.CREATED);
+    public ResponseEntity<ResponseTurmaDTO> createClass(@RequestBody RequestTurmaDTO turmaEntity) {
+        return new ResponseEntity<>(turmaService.createdTurma(turmaEntity), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/update")
