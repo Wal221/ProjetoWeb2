@@ -22,7 +22,6 @@ public class ProfessorEntity extends UsuarioEntity implements Serializable {
     @Column( nullable = false)
     private Date horarioAula;
 
-
     @JsonIgnore //  não e a melhor solução
     @OneToOne(mappedBy = "teacher")
     private TurmaEntity turmaEntity;

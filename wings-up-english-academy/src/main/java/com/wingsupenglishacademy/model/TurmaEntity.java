@@ -23,12 +23,11 @@ public class TurmaEntity implements Serializable {
     private Date classSchedule;//horario aula
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private EnglishLevel englishLevel;
 
     @Column(nullable = false)
     private String teachingMaterials; //materiais didaticos
-
-
 
     @JoinColumn(name = "teacherID")
     @OneToOne
