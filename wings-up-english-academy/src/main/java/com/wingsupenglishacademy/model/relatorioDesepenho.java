@@ -6,15 +6,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
-@Table(name = "aula")
-public class AulaEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    private Long id;
+@Table(name = "relatorioDesempenho")
+public class relatorioDesepenho extends AulaEntity implements Serializable {
     @Column(nullable = false)
     private String enroll;
 
@@ -22,27 +17,31 @@ public class AulaEntity implements Serializable {
     private Double grade;
 
     @Column(nullable = false)
-    private Date diaAula;
+    private Double frequenciaAula;
 
     @Column(nullable = false)
-    private Date horaAula;
+    private Double resultadoAvaliacao;
+    @Id
+    private Long id;
 
-    @Column(nullable = false)
-    private String topicosAbordados;
+    public relatorioDesepenho (){
 
-    @Column(nullable = false)
-    private Date presenca;
+   }
 
-    public AulaEntity() {
+    public relatorioDesepenho(Double grade, Double frequenciaAula, Double resultadoAvaliacao) {
+        this.grade = grade;
+        this.frequenciaAula = frequenciaAula;
+        this.resultadoAvaliacao = resultadoAvaliacao;
     }
 
-    public AulaEntity(Date diaAula, Date horaAula, String topicosAbordados, Date presenca) {
-        this.diaAula = diaAula;
-        this.horaAula = horaAula;
-        this.topicosAbordados = topicosAbordados;
-        this.presenca = presenca;
+    //
+    public void setId(Long id) {
+        this.id = id;
     }
 
+    public Long getId() {
+        return id;
+    }
     public String getEnroll() {
         return enroll;
     }
@@ -59,35 +58,21 @@ public class AulaEntity implements Serializable {
         this.grade = grade;
     }
 
-    public Date getDiaAula() {
-        return diaAula;
+    public Double getFrequenciaAula() {
+        return frequenciaAula;
     }
 
-    public void setDiaAula(Date diaAula) {
-        this.diaAula = diaAula;
+    public void setFrequenciaAula(Double frequenciaAula) {
+        this.frequenciaAula = frequenciaAula;
     }
 
-    public Date getHoraAula() {
-        return horaAula;
+    public Double getResultadoAvaliacao() {
+        return resultadoAvaliacao;
     }
 
-    public void setHoraAula(Date horaAula) {
-        this.horaAula = horaAula;
+    public void setResultadoAvaliacao(Double resultadoAvaliacao) {
+        this.resultadoAvaliacao = resultadoAvaliacao;
     }
 
-    public String getTopicosAbordados() {
-        return topicosAbordados;
-    }
 
-    public void setTopicosAbordados(String topicosAbordados) {
-        this.topicosAbordados = topicosAbordados;
-    }
-
-    public Date getPresenca() {
-        return presenca;
-    }
-
-    public void setPresenca(Date presenca) {
-        this.presenca = presenca;
-    }
 }
