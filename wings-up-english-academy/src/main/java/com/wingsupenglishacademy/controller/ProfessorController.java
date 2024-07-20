@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.controller;
 
-import com.wingsupenglishacademy.DTO.RequestTeacherDTO;
-import com.wingsupenglishacademy.DTO.ResponseTeacherDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class ProfessorController {
 
 
     @PostMapping(value = "/create-professor")
-    public ResponseEntity<ResponseTeacherDTO> createTeacher(@RequestBody RequestTeacherDTO teacher) {
+    public ResponseEntity<ResponseTeacherDTO> createTeacher(@RequestBody RequestProfessorDTO teacher) {
         return new ResponseEntity<>(ProfessorService.createdTeacher(teacher), HttpStatus.CREATED);
     }
 
