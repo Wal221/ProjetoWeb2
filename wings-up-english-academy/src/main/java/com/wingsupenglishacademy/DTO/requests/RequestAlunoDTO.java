@@ -1,4 +1,4 @@
-package com.wingsupenglishacademy.DTO;
+package com.wingsupenglishacademy.DTO.requests;
 
 
 import com.github.dozermapper.core.Mapping;
@@ -7,7 +7,7 @@ import com.wingsupenglishacademy.model.AlunoEntity;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class RequestStudentDTO implements Serializable {
+public class RequestAlunoDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,10 +22,10 @@ public class RequestStudentDTO implements Serializable {
     private Long turmaId;
 
 
-    public RequestStudentDTO() {
+    public RequestAlunoDTO() {
     }
 
-    public RequestStudentDTO(Long id, String name, String email, String telephone, String enroll, Double grade) {
+    public RequestAlunoDTO(Long id, String name, String email, String telephone, String enroll, Double grade) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -33,7 +33,7 @@ public class RequestStudentDTO implements Serializable {
         this.enroll = enroll;
     }
 
-    public RequestStudentDTO(AlunoEntity alunoEntity) {
+    public RequestAlunoDTO(AlunoEntity alunoEntity) {
         this.id = alunoEntity.getId();
         this.name = alunoEntity.getName();
     }
@@ -98,7 +98,7 @@ public class RequestStudentDTO implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RequestStudentDTO that = (RequestStudentDTO) o;
+        RequestAlunoDTO that = (RequestAlunoDTO) o;
         return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(telephone, that.telephone) && Objects.equals(enroll, that.enroll) && Objects.equals(grade, that.grade);
     }
 
@@ -109,7 +109,7 @@ public class RequestStudentDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "RequestStudentDTO{" +
+        return "RequestAlunoDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
