@@ -1,11 +1,9 @@
 package com.wingsupenglishacademy.service;
 
-import com.wingsupenglishacademy.DTO.RequestTeacherDTO;
-import com.wingsupenglishacademy.DTO.ResponseTeacherDTO;
-import com.wingsupenglishacademy.mapper.DozerMapper;
+import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
 import com.wingsupenglishacademy.mapper.custom.ProfesorMapper;
-import com.wingsupenglishacademy.model.ClassEntity;
-import com.wingsupenglishacademy.model.TeacherEntity;
+import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +11,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TeacherService {
+public class ProfessorService {
 
     @Autowired
     private TeacherRepository teacherRepository;
 
     @Autowired
-    private ClassService classService;
+    private TurmaService turmaService;
 
     @Autowired
     private ProfesorMapper mapper;
@@ -30,27 +28,30 @@ public class TeacherService {
         return responseTeacherDTO;
     }
 
-    public List<TeacherEntity> getAllTeachers() {
+    public ProfessorEntity findByTeacherIdEntity(Long id) {
+
+        var teacher = teacherRepository.findById(id).get();
+        return teacher;
+    }
+
+    public List<ProfessorEntity> getAllTeachers() {
         return teacherRepository.findAll();
     }
 
-    public ResponseTeacherDTO createdTeacher(RequestTeacherDTO teacherDTO) {
 
+    public ResponseTeacherDTO createdTeacher(RequestProfessorDTO teacherDTO) {
         // converto o DTO para class para pode Salvalo
-        TeacherEntity teacherAux = mapper.convertToTeacherEntity(teacherDTO);
+        ProfessorEntity teacherAux = mapper.convertToTeacherEntity(teacherDTO);
 
         this.teacherRepository.save(teacherAux);
         ResponseTeacherDTO responseTeacherDTO = this.mapper.convertToTeacherDTO(teacherAux);
         return responseTeacherDTO;
 
 
-
-
-
     }
 
-    public TeacherEntity updateTeacher(TeacherEntity teacher) {
-        if (getTeacherById(teacher.getId()) != null) {
+    public ProfessorEntity updateTeacher(ProfessorEntity teacher) {
+        if (this.teacherRepository.findById(teacher.getId()) != null) {
             return teacherRepository.save(teacher);
         }
         return null;
@@ -60,11 +61,6 @@ public class TeacherService {
     public void deleteTeacher(Long id) {
         teacherRepository.deleteById(id);
     }
-
-
-
-
-
 
 
 }

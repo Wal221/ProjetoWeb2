@@ -10,6 +10,11 @@ import java.io.Serializable;
 @Entity
 @Table(name = "relatorioDesempenho")
 public class relatorioDesepenho extends AulaEntity implements Serializable {
+
+
+    @Id
+    private Long id;
+
     @Column(nullable = false)
     private String enroll;
 
@@ -21,8 +26,6 @@ public class relatorioDesepenho extends AulaEntity implements Serializable {
 
     @Column(nullable = false)
     private Double resultadoAvaliacao;
-    @Id
-    private Long id;
 
     public relatorioDesepenho (){
 

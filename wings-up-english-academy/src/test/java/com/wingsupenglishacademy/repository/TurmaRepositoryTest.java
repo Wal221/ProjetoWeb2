@@ -1,12 +1,11 @@
 package com.wingsupenglishacademy.repository;
 
-import com.wingsupenglishacademy.model.ClassEntity;
-import com.wingsupenglishacademy.model.StudentEntity;
+import com.wingsupenglishacademy.model.Enum.EnglishLevel;
+import com.wingsupenglishacademy.model.TurmaEntity;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -17,10 +16,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @ActiveProfiles("test")
-public class ClassRepositoryTest {
+public class TurmaRepositoryTest {
 
     @Autowired
-    ClassRepository repository;
+    TurmaRepository repository;
 
     @Autowired
     EntityManager entityManager;
@@ -29,15 +28,15 @@ public class ClassRepositoryTest {
     @Test
     @DisplayName("Teste de adicionar turma com sucesso")
     void classFindByIdCase1(){
-      ClassEntity classEntity = new ClassEntity(null,new Date(),"Ingles intermediario", "Livro", null,null);
-      this.createdClass(classEntity);
-      Optional<ClassEntity> classEntityOptional = repository.findById(classEntity.getId());
+      TurmaEntity turmaEntity = new TurmaEntity(null,new Date(), EnglishLevel.BASICO, "Livro", null,null);
+      this.createdClass(turmaEntity);
+      Optional<TurmaEntity> classEntityOptional = repository.findById(turmaEntity.getId());
       assertThat(classEntityOptional.isPresent()).isTrue();
 
     }
 
 
-    private ClassEntity createdClass(ClassEntity entity){
+    private TurmaEntity createdClass(TurmaEntity entity){
         entityManager.persist(entity);
         return entity;
 
