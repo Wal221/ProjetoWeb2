@@ -1,10 +1,10 @@
-package com.wingsupenglishacademy.DTO;
+package com.wingsupenglishacademy.DTO.requests;
 
 import com.github.dozermapper.core.Mapping;
 import java.io.Serializable;
 import java.util.Date;
 
-public class RequestTeacherDTO implements Serializable {
+public class RequestProfessorDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -18,9 +18,9 @@ public class RequestTeacherDTO implements Serializable {
     private Date horarioAula;
     private String telephone;
 
-    public RequestTeacherDTO() {}
+    public RequestProfessorDTO() {}
 
-    public RequestTeacherDTO(Long id, String name, String specialization, String email, Long classEntity, Double salary, Date horarioAula, String telephone) {
+    public RequestProfessorDTO(Long id, String name, String specialization, String email, Long classEntity, Double salary, Date horarioAula, String telephone) {
         this.id = id;
         this.name = name;
         this.especializacao = specialization;
