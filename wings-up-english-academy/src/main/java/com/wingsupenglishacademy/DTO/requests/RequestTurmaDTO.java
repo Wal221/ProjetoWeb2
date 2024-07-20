@@ -1,4 +1,4 @@
-package com.wingsupenglishacademy.DTO;
+package com.wingsupenglishacademy.DTO.requests;
 
 
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class RequestClassDTO {
+public class RequestTurmaDTO {
 
     @Mapping("id")
     private Long id;
@@ -27,7 +27,7 @@ public class RequestClassDTO {
 
     private List<AlunoEntity> students = new ArrayList<>(); // passar somente os ID dos alunos
 
-    public RequestClassDTO() {}
+    public RequestTurmaDTO() {}
 
 
     public Long getId() {
