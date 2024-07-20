@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.service;
 
-import com.wingsupenglishacademy.DTO.RequestStudentDTO;
-import com.wingsupenglishacademy.DTO.ResponseStudentDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestAlunoDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseStudentDTO;
 import com.wingsupenglishacademy.mapper.custom.StudentMapper;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.repository.StudentRepository;
@@ -29,7 +29,7 @@ public class AlunoService {
         return studentRepository.findAll();
     }
 
-    public ResponseStudentDTO createdStudent(RequestStudentDTO studentDTO) {
+    public ResponseStudentDTO createdStudent(RequestAlunoDTO studentDTO) {
         var entity = studentMapper.convertToStudentDTO(studentDTO);
         studentRepository.save(entity);
         return studentMapper.convertToEntityStudentDTO(entity);
