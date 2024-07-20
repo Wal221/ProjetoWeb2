@@ -30,15 +30,12 @@ public class AlunoController {
         return new ResponseEntity<>(requestAlunoDTO, HttpStatus.OK);
 
     }
-   
-
 
     @PostMapping(value = "/created")
     public ResponseEntity<ResponseStudentDTO> createStudent(@RequestBody RequestAlunoDTO studentDTO) {
 
         return new ResponseEntity<>(alunoService.createdStudent(studentDTO), HttpStatus.CREATED);
     }
-
 
     @PutMapping(value = "/update")
     public ResponseEntity<AlunoEntity> updateStudent(@RequestBody AlunoEntity student) {

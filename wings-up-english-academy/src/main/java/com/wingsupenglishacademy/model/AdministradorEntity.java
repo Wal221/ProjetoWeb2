@@ -12,30 +12,9 @@ import java.io.Serializable;
 public class AdministradorEntity extends UsuarioEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Column(nullable = false)
-    private String enroll;
-
-    @Column(nullable = false)
-    private Double grade ;
-
     public AdministradorEntity(Long id, String name, String enroll, Double grade, String email, String telephone) {
         super(id, name, email, telephone);
-        this.enroll = enroll;
-        this.grade = grade;
     }
     public AdministradorEntity() {}
 
-    public String getEnroll() {
-        return enroll;
-    }
-
-    public void setEnroll(String enroll) {
-        this.enroll = enroll;
-    }
-    public Double getGrade() {
-        return grade;
-    }
-    public void setGrade(Double grade) {
-        this.grade = grade;
-    }
 }
