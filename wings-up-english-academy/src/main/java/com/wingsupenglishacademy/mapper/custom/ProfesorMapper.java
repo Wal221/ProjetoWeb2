@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.mapper.custom;
 
-import com.wingsupenglishacademy.DTO.RequestTeacherDTO;
-import com.wingsupenglishacademy.DTO.ResponseTeacherDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
 import com.wingsupenglishacademy.model.TurmaEntity;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.service.TurmaService;
@@ -20,11 +20,14 @@ public class ProfesorMapper {
         response.setSpecialization(teacher.getEspecializacao());
         response.setHorarioAula(teacher.getHorarioAula());
 
+        //criar uma consulta para alterna a tabela e adicona na turma com  o ID refernete , pois da manaiera que esta agora
+        //basicamanete estou apenas realizando uma consulta e adiciondo o nome dela euma varival.
+        response.setTurma(teacher.getClassEntity().getEnglishLevel().toString());
         return response;
     }
 
-    public RequestTeacherDTO convertToRequestTeacherDTO(ProfessorEntity teacher) {
-        RequestTeacherDTO request = new RequestTeacherDTO();
+    public RequestProfessorDTO convertToRequestTeacherDTO(ProfessorEntity teacher) {
+        RequestProfessorDTO request = new RequestProfessorDTO();
         request.setName(teacher.getName());
         request.setEspecializacao(teacher.getEspecializacao());
         request.setHorarioAula(teacher.getHorarioAula());
@@ -35,7 +38,7 @@ public class ProfesorMapper {
     }
 
 
-    public ProfessorEntity convertToTeacherEntity(RequestTeacherDTO request) {
+    public ProfessorEntity convertToTeacherEntity(RequestProfessorDTO request) {
         ProfessorEntity teacher = new ProfessorEntity();
         teacher.setName(request.getName());
         teacher.setEspecializacao(request.getEspecializacao());
