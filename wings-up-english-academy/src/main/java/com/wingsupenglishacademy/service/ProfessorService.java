@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.service;
 
-import com.wingsupenglishacademy.DTO.RequestTeacherDTO;
-import com.wingsupenglishacademy.DTO.ResponseTeacherDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
 import com.wingsupenglishacademy.mapper.custom.ProfesorMapper;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.repository.TeacherRepository;
@@ -38,7 +38,8 @@ public class ProfessorService {
         return teacherRepository.findAll();
     }
 
-    public ResponseTeacherDTO createdTeacher(RequestTeacherDTO teacherDTO) {
+
+    public ResponseTeacherDTO createdTeacher(RequestProfessorDTO teacherDTO) {
         // converto o DTO para class para pode Salvalo
         ProfessorEntity teacherAux = mapper.convertToTeacherEntity(teacherDTO);
 
