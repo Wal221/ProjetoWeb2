@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.mapper.custom;
 
-import com.wingsupenglishacademy.DTO.RequestStudentDTO;
-import com.wingsupenglishacademy.DTO.ResponseStudentDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestAlunoDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseStudentDTO;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.service.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ public class StudentMapper {
     @Autowired
      private TurmaService turmaService;
 
-    public AlunoEntity convertToStudentDTO(RequestStudentDTO dto){
+    public AlunoEntity convertToStudentDTO(RequestAlunoDTO dto){
        AlunoEntity alunoEntity = new AlunoEntity();
        alunoEntity.setId(dto.getId());
        alunoEntity.setName(dto.getName());
