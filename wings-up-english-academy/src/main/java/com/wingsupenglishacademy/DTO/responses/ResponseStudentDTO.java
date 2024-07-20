@@ -1,4 +1,4 @@
-package com.wingsupenglishacademy.DTO;
+package com.wingsupenglishacademy.DTO.responses;
 
 import java.util.Objects;
 
