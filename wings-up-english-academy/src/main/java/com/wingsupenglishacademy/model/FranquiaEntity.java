@@ -9,10 +9,6 @@ import java.io.Serializable;
 public class FranquiaEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Column(nullable = false)
-    private String enroll;
-    @Column(nullable = false)
-    private Double grade ;
 
     @Id //id para franquia?????
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,22 +34,6 @@ public class FranquiaEntity implements Serializable {
     this.telefone = telefone;
     this.numAlunos = numAlunos;
     this.desepenhoGeral = desepenhoGeral;
-    }
-
-    public String getEnroll() {
-        return enroll;
-    }
-
-    public void setEnroll(String enroll) {
-        this.enroll = enroll;
-    }
-
-    public Double getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Double grade) {
-        this.grade = grade;
     }
 
     public Long getId() {
