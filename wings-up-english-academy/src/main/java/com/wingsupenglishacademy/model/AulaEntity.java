@@ -1,9 +1,6 @@
 package com.wingsupenglishacademy.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,12 +11,8 @@ public class AulaEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private String enroll;
-
-    @Column(nullable = false)
-    private Double grade;
 
     @Column(nullable = false)
     private Date diaAula;
@@ -43,21 +36,6 @@ public class AulaEntity implements Serializable {
     this.presenca = presenca;
     }
 
-    public String getEnroll() {
-        return enroll;
-    }
-
-    public void setEnroll(String enroll) {
-        this.enroll = enroll;
-    }
-
-    public Double getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Double grade) {
-        this.grade = grade;
-    }
 
     public Date getDiaAula() {
         return diaAula;
