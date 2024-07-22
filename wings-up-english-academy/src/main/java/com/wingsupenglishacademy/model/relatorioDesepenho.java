@@ -25,7 +25,7 @@ public class relatorioDesepenho extends AulaEntity implements Serializable {
     private Double frequenciaAula;
 
     @Column(nullable = false)
-    private Double resultadoAvaliacao;
+    private Double resultadoAvaliacao; // lista de avalição relacionadas ao aluno
 
     public relatorioDesepenho (){
 
