@@ -1,2 +1,5 @@
-package com.wingsupenglishacademy.controller;public class AvalicaoController {
+package com.wingsupenglishacademy.controller;
+
+
+public class AvalicaoController {
 }
