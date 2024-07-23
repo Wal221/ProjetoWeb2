@@ -4,7 +4,9 @@ import com.wingsupenglishacademy.model.Enum.TipoAvaliacao;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,11 +17,21 @@ public class AvaliacaoEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = true)
     private Double nota;
+
     @Enumerated(EnumType.STRING)
     private TipoAvaliacao tipoAvalicao;
+
     private Date dataAvalicao;
+
     private Double valorAvalicao;
+
+    @ManyToMany
+    private List<AlunoEntity> alunos = new ArrayList<>(); // quais alunos vai ter acesso a essa avaliação  ?
+
+
 
 
     public AvaliacaoEntity() {}
@@ -65,6 +77,8 @@ public class AvaliacaoEntity implements Serializable {
     public void setValorAvalicao(Double valorAvalicao) {
         this.valorAvalicao = valorAvalicao;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
