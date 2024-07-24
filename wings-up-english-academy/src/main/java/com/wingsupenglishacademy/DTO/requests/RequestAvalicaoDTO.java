@@ -4,6 +4,7 @@ import com.github.dozermapper.core.Mapping;
 import com.wingsupenglishacademy.model.Enum.TipoAvaliacao;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class RequestAvalicaoDTO {
@@ -15,17 +16,18 @@ public class RequestAvalicaoDTO {
     private TipoAvaliacao tipoAvalicao;
     private Date dataAvalicao;
     private Double valorAvalicao;
-
-
+    private Long idProfesso;
+    private List<Long> idAlunos;
     public RequestAvalicaoDTO() {
     }
 
-    public RequestAvalicaoDTO(Long key, Double nota, TipoAvaliacao tipoAvalicao, Date dataAvalicao, Double valorAvalicao) {
+    public RequestAvalicaoDTO(Long key, Double nota, TipoAvaliacao tipoAvalicao, Date dataAvalicao, Double valorAvalicao, Long idProfesso) {
         this.key = key;
         this.nota = nota;
         this.tipoAvalicao = tipoAvalicao;
         this.dataAvalicao = dataAvalicao;
         this.valorAvalicao = valorAvalicao;
+        this.idProfesso = idProfesso;
     }
 
     public Long getKey() {
@@ -68,18 +70,20 @@ public class RequestAvalicaoDTO {
         this.valorAvalicao = valorAvalicao;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RequestAvalicaoDTO that = (RequestAvalicaoDTO) o;
-        return Objects.equals(key, that.key) && Objects.equals(nota, that.nota) && tipoAvalicao == that.tipoAvalicao && Objects.equals(dataAvalicao, that.dataAvalicao) && Objects.equals(valorAvalicao, that.valorAvalicao);
+    public Long getIdProfesso() {
+        return idProfesso;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(key, nota, tipoAvalicao, dataAvalicao, valorAvalicao);
+    public void setIdProfesso(Long idProfesso) {
+        this.idProfesso = idProfesso;
+    }
+
+    public List<Long> getIdAlunos() {
+        return idAlunos;
+    }
+
+    public void setIdAlunos(List<Long> idAlunos) {
+        this.idAlunos = idAlunos;
     }
 
     @Override
@@ -90,6 +94,20 @@ public class RequestAvalicaoDTO {
                 ", tipoAvalicao=" + tipoAvalicao +
                 ", dataAvalicao=" + dataAvalicao +
                 ", valorAvalicao=" + valorAvalicao +
+                ", idProfesso=" + idProfesso +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RequestAvalicaoDTO that = (RequestAvalicaoDTO) o;
+        return Objects.equals(key, that.key) && Objects.equals(nota, that.nota) && tipoAvalicao == that.tipoAvalicao && Objects.equals(dataAvalicao, that.dataAvalicao) && Objects.equals(valorAvalicao, that.valorAvalicao) && Objects.equals(idProfesso, that.idProfesso);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key, nota, tipoAvalicao, dataAvalicao, valorAvalicao, idProfesso);
     }
 }
