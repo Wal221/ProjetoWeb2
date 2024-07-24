@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -27,8 +28,8 @@ public class ProfessorEntity extends UsuarioEntity implements Serializable {
     private TurmaEntity turmaEntity;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "professor")
-    private AvaliacaoEntity avaliacao;
+    @OneToMany(mappedBy = "professor")
+    private List<AvaliacaoEntity> avaliacao;
 
     public ProfessorEntity() {
     }
