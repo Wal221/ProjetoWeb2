@@ -4,6 +4,7 @@ package com.wingsupenglishacademy.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -22,6 +23,8 @@ public class AlunoEntity extends UsuarioEntity implements Serializable {
     private TurmaEntity turma;
 
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<AvaliacaoEntity> avaliacao;
 
     public AlunoEntity() {
         super();
