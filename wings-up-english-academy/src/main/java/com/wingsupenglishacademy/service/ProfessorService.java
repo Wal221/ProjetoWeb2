@@ -1,6 +1,8 @@
 package com.wingsupenglishacademy.service;
 
+import com.wingsupenglishacademy.DTO.requests.RequestAvalicaoDTO;
 import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseAvaliacaDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
 import com.wingsupenglishacademy.mapper.custom.ProfesorMapper;
 import com.wingsupenglishacademy.model.ProfessorEntity;
@@ -11,16 +13,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProfessorService {
+public class
+ProfessorService {
 
     @Autowired
     private TeacherRepository teacherRepository;
 
-    @Autowired
-    private TurmaService turmaService;
 
     @Autowired
     private ProfesorMapper mapper;
+
+
+    @Autowired
+    private AvaliacaoService avaliacaoService;
 
     public ResponseTeacherDTO findByIdTeacher(Long id) {
         var teacher = teacherRepository.findById(id).get();
@@ -60,6 +65,12 @@ public class ProfessorService {
 
     public void deleteTeacher(Long id) {
         teacherRepository.deleteById(id);
+    }
+
+
+    public ResponseAvaliacaDTO criarAvaliacao(RequestAvalicaoDTO avalicaoDTO){
+        return this.avaliacaoService.createdAvalicao(avalicaoDTO);
+
     }
 
 
