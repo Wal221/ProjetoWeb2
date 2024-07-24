@@ -28,7 +28,11 @@ public class AvaliacaoEntity implements Serializable {
 
     private Double valorAvalicao;
 
+    @OneToOne
+    private ProfessorEntity professor;
+
     @ManyToMany
+    @Column(nullable = false)
     private List<AlunoEntity> alunos = new ArrayList<>(); // quais alunos vai ter acesso a essa avaliação  ?
 
 
@@ -78,7 +82,21 @@ public class AvaliacaoEntity implements Serializable {
         this.valorAvalicao = valorAvalicao;
     }
 
+    public ProfessorEntity getProfessor() {
+        return professor;
+    }
 
+    public void setProfessor(ProfessorEntity professor) {
+        this.professor = professor;
+    }
+
+    public List<AlunoEntity> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<AlunoEntity> alunos) {
+        this.alunos = alunos;
+    }
 
     @Override
     public boolean equals(Object o) {
