@@ -28,7 +28,7 @@ public class AvaliacaoEntity implements Serializable {
 
     private Double valorAvalicao;
 
-    @OneToOne
+    @ManyToOne
     private ProfessorEntity professor;
 
     @ManyToMany

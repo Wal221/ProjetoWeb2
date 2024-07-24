@@ -26,6 +26,9 @@ public class ProfessorEntity extends UsuarioEntity implements Serializable {
     @OneToOne(mappedBy = "teacher")
     private TurmaEntity turmaEntity;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "professor")
+    private AvaliacaoEntity avaliacao;
 
     public ProfessorEntity() {
     }
