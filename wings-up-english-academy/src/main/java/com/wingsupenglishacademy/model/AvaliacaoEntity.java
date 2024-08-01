@@ -18,9 +18,6 @@ public class AvaliacaoEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = true)
-    private Double nota;
-
     @Enumerated(EnumType.STRING)
     private TipoAvaliacao tipoAvalicao;
 
@@ -28,7 +25,8 @@ public class AvaliacaoEntity implements Serializable {
 
     private Double valorAvalicao;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "professor_id", nullable = true)
     private ProfessorEntity professor;
 
     @ManyToMany
@@ -36,7 +34,14 @@ public class AvaliacaoEntity implements Serializable {
     private List<AlunoEntity> alunos = new ArrayList<>(); // quais alunos vai ter acesso a essa avaliação  ?
 
 
-
+    public AvaliacaoEntity(Long id, TipoAvaliacao tipoAvalicao, Date dataAvalicao, Double valorAvalicao, ProfessorEntity professor, List<AlunoEntity> alunos) {
+        this.id = id;
+        this.tipoAvalicao = tipoAvalicao;
+        this.dataAvalicao = dataAvalicao;
+        this.valorAvalicao = valorAvalicao;
+        this.professor = professor;
+        this.alunos = alunos;
+    }
 
     public AvaliacaoEntity() {}
 
@@ -50,13 +55,8 @@ public class AvaliacaoEntity implements Serializable {
         this.id = id;
     }
 
-    public Double getNota() {
-        return nota;
-    }
 
-    public void setNota(Double notas) {
-        this.nota = notas;
-    }
+
 
     public TipoAvaliacao getTipoAvalicao() {
         return tipoAvalicao;
@@ -103,19 +103,18 @@ public class AvaliacaoEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AvaliacaoEntity that = (AvaliacaoEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(nota, that.nota) && tipoAvalicao == that.tipoAvalicao && Objects.equals(dataAvalicao, that.dataAvalicao) && Objects.equals(valorAvalicao, that.valorAvalicao);
+        return Objects.equals(id, that.id) && tipoAvalicao == that.tipoAvalicao && Objects.equals(dataAvalicao, that.dataAvalicao) && Objects.equals(valorAvalicao, that.valorAvalicao);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nota, tipoAvalicao, dataAvalicao, valorAvalicao);
+        return Objects.hash(id, tipoAvalicao, dataAvalicao, valorAvalicao);
     }
 
     @Override
     public String toString() {
         return "AvaliacaoEntity{" +
                 "id=" + id +
-                ", notas=" + nota +
                 ", tipoAvalicao=" + tipoAvalicao +
                 ", dataAvalicao=" + dataAvalicao +
                 ", valorAvalicao=" + valorAvalicao +
