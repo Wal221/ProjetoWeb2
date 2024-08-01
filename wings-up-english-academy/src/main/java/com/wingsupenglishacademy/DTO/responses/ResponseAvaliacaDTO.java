@@ -7,28 +7,29 @@ import java.util.Objects;
 
 public class ResponseAvaliacaDTO {
 
-    private Double nota;
+    //private Double nota;
     private TipoAvaliacao tipoAvalicao;
     private Date dataAvalicao;
     private Double valorAvalicao;
-
+    private String nameProfessor;
 
     public ResponseAvaliacaDTO() {
     }
 
     public ResponseAvaliacaDTO(Double nota, TipoAvaliacao tipoAvalicao, Date dataAvalicao, Double valorAvalicao) {
-        this.nota = nota;
+        //this.nota = nota;
         this.tipoAvalicao = tipoAvalicao;
         this.dataAvalicao = dataAvalicao;
         this.valorAvalicao = valorAvalicao;
     }
 
-    public Double getNota() {
-        return nota;
+
+    public String getNameProfessor() {
+        return nameProfessor;
     }
 
-    public void setNota(Double nota) {
-        this.nota = nota;
+    public void setNameProfessor(String nameProfessor) {
+        this.nameProfessor = nameProfessor;
     }
 
     public TipoAvaliacao getTipoAvalicao() {
@@ -60,18 +61,17 @@ public class ResponseAvaliacaDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ResponseAvaliacaDTO that = (ResponseAvaliacaDTO) o;
-        return Objects.equals(nota, that.nota) && tipoAvalicao == that.tipoAvalicao && Objects.equals(dataAvalicao, that.dataAvalicao) && Objects.equals(valorAvalicao, that.valorAvalicao);
+        return  tipoAvalicao == that.tipoAvalicao && Objects.equals(dataAvalicao, that.dataAvalicao) && Objects.equals(valorAvalicao, that.valorAvalicao);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nota, tipoAvalicao, dataAvalicao, valorAvalicao);
+        return Objects.hash( tipoAvalicao, dataAvalicao, valorAvalicao);
     }
 
     @Override
     public String toString() {
         return "ResponseAvaliacaDTO{" +
-                "nota=" + nota +
                 ", tipoAvalicao=" + tipoAvalicao +
                 ", dataAvalicao=" + dataAvalicao +
                 ", valorAvalicao=" + valorAvalicao +
