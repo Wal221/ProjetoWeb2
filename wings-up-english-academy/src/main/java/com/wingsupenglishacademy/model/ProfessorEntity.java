@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,9 +28,10 @@ public class ProfessorEntity extends UsuarioEntity implements Serializable {
     @OneToOne(mappedBy = "teacher")
     private TurmaEntity turmaEntity;
 
+
     @JsonIgnore
     @OneToMany(mappedBy = "professor")
-    private List<AvaliacaoEntity> avaliacao;
+    private List<AvaliacaoEntity> avaliacao = new ArrayList<>();
 
     public ProfessorEntity() {
     }
@@ -72,5 +74,21 @@ public class ProfessorEntity extends UsuarioEntity implements Serializable {
 
     public void setHorarioAula(Date horarioAula) {
         this.horarioAula = horarioAula;
+    }
+
+    public TurmaEntity getTurmaEntity() {
+        return turmaEntity;
+    }
+
+    public void setTurmaEntity(TurmaEntity turmaEntity) {
+        this.turmaEntity = turmaEntity;
+    }
+
+    public List<AvaliacaoEntity> getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(List<AvaliacaoEntity> avaliacao) {
+        this.avaliacao = avaliacao;
     }
 }
