@@ -7,6 +7,7 @@ import com.wingsupenglishacademy.model.AvaliacaoEntity;
 import com.wingsupenglishacademy.service.AvaliacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,10 @@ public class AvalicaoController {
     @Autowired
     AvaliacaoService avaliacaoService;
 
-    @PostMapping(value="/created-avaliacao")
+    @PostMapping(value="/created-avaliacao" , produces = {
+            MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE
+    })
     public ResponseEntity<ResponseAvaliacaDTO> createdAvalicao(@RequestBody RequestAvalicaoDTO avaliacaoDTO){
         return new ResponseEntity<>(avaliacaoService.createdAvalicao(avaliacaoDTO), HttpStatus.CREATED);
 
