@@ -6,6 +6,7 @@ import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,10 @@ public class AlunoController {
 //        return new ResponseEntity<>(  studentService.findByIdStudent(id), HttpStatus.OK);
 //    }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}",  produces = {
+            MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE
+    })
     public ResponseEntity<RequestAlunoDTO> getStudentByI(@PathVariable Long id) {
       AlunoEntity saved = alunoService.findByIdStudent(id);
         RequestAlunoDTO requestAlunoDTO = new RequestAlunoDTO(saved);
