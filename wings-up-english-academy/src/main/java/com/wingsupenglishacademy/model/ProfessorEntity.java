@@ -29,6 +29,7 @@ public class ProfessorEntity extends UsuarioEntity implements Serializable {
     private TurmaEntity turmaEntity;
 
 
+
     @JsonIgnore
     @OneToMany(mappedBy = "professor")
     private List<AvaliacaoEntity> avaliacao = new ArrayList<>();

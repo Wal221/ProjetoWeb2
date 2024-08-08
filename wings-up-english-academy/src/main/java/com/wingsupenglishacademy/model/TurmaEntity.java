@@ -33,6 +33,11 @@ public class TurmaEntity implements Serializable {
     @OneToOne
     private ProfessorEntity teacher;
 
+    @Transient
+    private Boolean disponivel=true;
+
+    private final Integer numVagas = 15;
+
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
