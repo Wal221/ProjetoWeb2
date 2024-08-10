@@ -5,6 +5,7 @@ import com.wingsupenglishacademy.DTO.responses.ResponseStudentDTO;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -63,5 +64,9 @@ public class AlunoController {
         return ResponseEntity.ok().body(alunoService.findAllStudent());
     }
 
+    @GetMapping("/material/{id}")
+    public ResponseEntity<ByteArrayResource> download(@PathVariable Long id) {
+        return alunoService.download(id);
+    }
 
 }
