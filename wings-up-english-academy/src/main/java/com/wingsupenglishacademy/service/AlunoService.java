@@ -42,6 +42,4 @@ public class AlunoService {
     public void deleteStudent(AlunoEntity alunoEntity) {
         studentRepository.delete(alunoEntity);
     }
-
-
 }

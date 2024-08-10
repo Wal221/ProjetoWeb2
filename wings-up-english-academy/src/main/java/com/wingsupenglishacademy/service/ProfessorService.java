@@ -9,12 +9,15 @@ import com.wingsupenglishacademy.mapper.DozerMapper;
 import com.wingsupenglishacademy.mapper.custom.AvaliacaoMapper;
 import com.wingsupenglishacademy.mapper.custom.ProfesorMapper;
 import com.wingsupenglishacademy.model.AvaliacaoEntity;
+import com.wingsupenglishacademy.model.Document;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.repository.AvaliacaoRepository;
 import com.wingsupenglishacademy.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -32,6 +35,8 @@ ProfessorService {
     AvaliacaoService avaliacaoService;
 
 
+    @Autowired
+    DocumentService documentService;
 
     public ResponseTeacherDTO findByIdTeacher(Long id) {
         var teacher = teacherRepository.findById(id).get();
@@ -76,6 +81,20 @@ ProfessorService {
 
     public ResponseAvaliacaDTO criarAvaliacao(RequestAvalicaoDTO avaliacaoDTO){
       return  this.avaliacaoService.createdAvalicao(avaliacaoDTO);
+    }
+
+
+    public String exportaMeterial(Long id,MultipartFile file) throws IOException {
+        // busca o id do professor que esta adicionando esse documento;
+        var professor = teacherRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Teacher not Found"));
+        // crio uum documento em seguida adiciono a lista de um referente professor indicando que esse documento esta associado
+        // a um professor
+
+        //depois de adicionar
+        professor.getMateDidaticos().add(documentService.upload(file));
+        //atualizo o meu professor
+        teacherRepository.save(professor);
+        return "Documento Criado";
     }
 
 
