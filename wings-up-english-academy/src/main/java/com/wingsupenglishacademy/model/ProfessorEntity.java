@@ -28,6 +28,9 @@ public class ProfessorEntity extends UsuarioEntity implements Serializable {
     @OneToOne(mappedBy = "teacher")
     private TurmaEntity turmaEntity;
 
+    @Column( nullable = true)
+    @ManyToMany
+    private List<Document> mateDidaticos = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "professor")
@@ -80,6 +83,14 @@ public class ProfessorEntity extends UsuarioEntity implements Serializable {
         return turmaEntity;
     }
 
+    public List<Document> getMateDidaticos() {
+        return mateDidaticos;
+    }
+
+    public void setMateDidaticos(List<Document> mateDidaticos) {
+        this.mateDidaticos = mateDidaticos;
+    }
+
     public void setTurmaEntity(TurmaEntity turmaEntity) {
         this.turmaEntity = turmaEntity;
     }
@@ -87,6 +98,7 @@ public class ProfessorEntity extends UsuarioEntity implements Serializable {
     public List<AvaliacaoEntity> getAvaliacao() {
         return avaliacao;
     }
+
 
     public void setAvaliacao(List<AvaliacaoEntity> avaliacao) {
         this.avaliacao = avaliacao;
