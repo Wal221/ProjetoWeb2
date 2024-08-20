@@ -1,7 +1,8 @@
 package com.wingsupenglishacademy.controller;
 
-import com.wingsupenglishacademy.repository.DTO.requests.RequestAdministradorDTO;
-import com.wingsupenglishacademy.repository.DTO.responses.ResponseAdministradorDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestAdministradorDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseAdministradorDTO;
+import com.wingsupenglishacademy.model.AdministradorEntity;
 import com.wingsupenglishacademy.service.AdministradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

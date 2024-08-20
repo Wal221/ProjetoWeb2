@@ -1,9 +1,10 @@
 package com.wingsupenglishacademy.controller;
 
-import com.wingsupenglishacademy.repository.DTO.requests.RequestAlunoDTO;
-import com.wingsupenglishacademy.repository.DTO.responses.ResponseStudentDTO;
-import com.wingsupenglishacademy.repository.DTO.responses.ResponseTurmaDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestAlunoDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseStudentDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseTurmaDTO;
 import com.wingsupenglishacademy.model.AlunoEntity;
+import com.wingsupenglishacademy.model.TurmaEntity;
 import com.wingsupenglishacademy.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;

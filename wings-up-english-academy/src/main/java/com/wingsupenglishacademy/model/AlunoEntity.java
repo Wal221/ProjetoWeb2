@@ -23,9 +23,7 @@ public class AlunoEntity extends UsuarioEntity implements Serializable {
     private TurmaEntity turma;
 
 
-
     @ManyToMany(fetch = FetchType.LAZY)
-    @Column(nullable = true)
     private List<AvaliacaoEntity> avaliacao;
 
     public AlunoEntity() {
