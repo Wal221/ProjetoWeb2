@@ -1,9 +1,9 @@
 package com.wingsupenglishacademy.controller;
 
-import com.wingsupenglishacademy.repository.DTO.requests.RequestAvalicaoDTO;
-import com.wingsupenglishacademy.repository.DTO.requests.RequestProfessorDTO;
-import com.wingsupenglishacademy.repository.DTO.responses.ResponseAvaliacaDTO;
-import com.wingsupenglishacademy.repository.DTO.responses.ResponseTeacherDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestAvalicaoDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseAvaliacaDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
