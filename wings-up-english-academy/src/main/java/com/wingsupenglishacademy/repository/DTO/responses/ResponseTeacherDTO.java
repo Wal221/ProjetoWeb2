@@ -1,13 +1,19 @@
 package com.wingsupenglishacademy.DTO.responses;
 
+import com.github.dozermapper.core.Mapping;
+import jakarta.persistence.Id;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class ResponseTeacherDTO implements Serializable {
+public class ResponseTeacherDTO extends RepresentationModel<ResponseTeacherDTO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Mapping("id")
+    private Long key;
     private String name;
     private String specialization;
     private Date horarioAula;
@@ -23,6 +29,14 @@ public class ResponseTeacherDTO implements Serializable {
         this.specialization = specialization;
         this.horarioAula = horarioAula;
         this.turma = turma;
+    }
+
+    public Long getKey() {
+        return key;
+    }
+
+    public void setKey(Long key) {
+        this.key = key;
     }
 
     public String getName() {
@@ -64,7 +78,7 @@ public class ResponseTeacherDTO implements Serializable {
                 ", specialization='" + specialization + '\'' +
                 ", horarioAula=" + horarioAula +
                 ", turma='" + turma + '\'' +
-                '}';
+                "Links" + getLinks();
     }
 
     @Override
@@ -79,4 +93,5 @@ public class ResponseTeacherDTO implements Serializable {
     public int hashCode() {
         return Objects.hash(name, specialization, horarioAula, turma);
     }
+
 }

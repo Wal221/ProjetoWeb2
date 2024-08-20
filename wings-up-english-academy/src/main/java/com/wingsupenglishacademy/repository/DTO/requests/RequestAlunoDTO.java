@@ -13,7 +13,7 @@ public class RequestAlunoDTO implements Serializable {
 
 
     @Mapping("id")
-    private Long id;
+    private Long key;
     private String name;
     private String email;
     private String telephone;
@@ -26,7 +26,7 @@ public class RequestAlunoDTO implements Serializable {
     }
 
     public RequestAlunoDTO(Long id, String name, String email, String telephone, String enroll, Double grade) {
-        this.id = id;
+        this.key = id;
         this.name = name;
         this.email = email;
         this.telephone = telephone;
@@ -34,16 +34,16 @@ public class RequestAlunoDTO implements Serializable {
     }
 
     public RequestAlunoDTO(AlunoEntity alunoEntity) {
-        this.id = alunoEntity.getId();
+        this.key = alunoEntity.getId();
         this.name = alunoEntity.getName();
     }
 
-    public Long getId() {
-        return id;
+    public Long getKey() {
+        return key;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setKey(Long key) {
+        this.key = key;
     }
 
     public String getName() {
@@ -99,19 +99,11 @@ public class RequestAlunoDTO implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RequestAlunoDTO that = (RequestAlunoDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(telephone, that.telephone) && Objects.equals(enroll, that.enroll) && Objects.equals(grade, that.grade);
+        return Objects.equals(key, that.key) && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(telephone, that.telephone) && Objects.equals(enroll, that.enroll) && Objects.equals(grade, that.grade) && Objects.equals(turmaId, that.turmaId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, telephone, enroll, grade);
-    }
-
-    @Override
-    public String toString() {
-        return "RequestAlunoDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return Objects.hash(key, name, email, telephone, enroll, grade, turmaId);
     }
 }

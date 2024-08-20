@@ -9,7 +9,7 @@ public class RequestProfessorDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Mapping("id")
-    private Long id;
+    private Long key;
     private String name;
     private String especializacao;
     private String email;
@@ -21,7 +21,7 @@ public class RequestProfessorDTO implements Serializable {
     public RequestProfessorDTO() {}
 
     public RequestProfessorDTO(Long id, String name, String specialization, String email, Long classEntity, Double salary, Date horarioAula, String telephone) {
-        this.id = id;
+        this.key = id;
         this.name = name;
         this.especializacao = specialization;
         this.email = email;
@@ -33,12 +33,13 @@ public class RequestProfessorDTO implements Serializable {
 
     // Getters e setters
 
-    public Long getId() {
-        return id;
+
+    public Long getKey() {
+        return key;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setKey(Long key) {
+        this.key = key;
     }
 
     public String getName() {

@@ -14,7 +14,7 @@ import java.util.List;
 public class RequestTurmaDTO {
 
     @Mapping("id")
-    private Long id;
+    private Long key;
 
     private Date classSchedule;//horario aula
 
@@ -24,18 +24,19 @@ public class RequestTurmaDTO {
 
     private ProfessorEntity teacher;
 
+   // private Integer numVagas;
 
     private List<AlunoEntity> students = new ArrayList<>(); // passar somente os ID dos alunos
 
     public RequestTurmaDTO() {}
 
 
-    public Long getId() {
-        return id;
+    public Long getKey() {
+        return key;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setKey(Long Key) {
+        this.key = key;
     }
 
     public Date getClassSchedule() {
@@ -78,4 +79,12 @@ public class RequestTurmaDTO {
     public void setStudents(List<AlunoEntity> students) {
         this.students = students;
     }
+
+//    public Integer getNumVagas() {
+//        return numVagas;
+//    }
+//
+//    public void setNumVagas(Integer numVagas) {
+//        this.numVagas = numVagas;
+//    }
 }
