@@ -1,4 +1,4 @@
-package br.com.walmir.restwithspringbootandjava1.exceptions;
+package com.wingsupenglishacademy.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
