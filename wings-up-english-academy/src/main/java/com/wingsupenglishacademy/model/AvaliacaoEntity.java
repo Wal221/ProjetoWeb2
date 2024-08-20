@@ -1,5 +1,6 @@
 package com.wingsupenglishacademy.model;
 
+import com.wingsupenglishacademy.model.Enum.StatusAvalicao;
 import com.wingsupenglishacademy.model.Enum.TipoAvaliacao;
 import jakarta.persistence.*;
 
@@ -20,6 +21,9 @@ public class AvaliacaoEntity implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private TipoAvaliacao tipoAvalicao;
+
+    @Enumerated(EnumType.STRING)
+    private StatusAvalicao status;
 
     private Date dataAvalicao;
 

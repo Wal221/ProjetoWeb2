@@ -14,9 +14,11 @@ import java.time.LocalDateTime;
 @Service
 public class DocumentService {
     private final DocumentRepository documentRepository;
+
     public DocumentService(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
     }
+
     public Document upload(MultipartFile file) throws IOException {
         if (!file.getContentType().equals("application/pdf")) {
             throw new RuntimeException("Invalid file type. Only PDF files are allowed.");

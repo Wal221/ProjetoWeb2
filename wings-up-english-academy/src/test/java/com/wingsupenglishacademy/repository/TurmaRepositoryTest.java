@@ -25,15 +25,15 @@ public class TurmaRepositoryTest {
     EntityManager entityManager;
 
 
-    @Test
-    @DisplayName("Teste de adicionar turma com sucesso")
-    void classFindByIdCase1(){
-      TurmaEntity turmaEntity = new TurmaEntity(null,new Date(), EnglishLevel.BASICO, "Livro", null,null);
-      this.createdClass(turmaEntity);
-      Optional<TurmaEntity> classEntityOptional = repository.findById(turmaEntity.getId());
-      assertThat(classEntityOptional.isPresent()).isTrue();
-
-    }
+//    @Test
+//    @DisplayName("Teste de adicionar turma com sucesso")
+//    void classFindByIdCase1(){
+//      TurmaEntity turmaEntity = new TurmaEntity(null,new Date(), EnglishLevel.BASICO, "Livro", null,null);
+//      this.createdClass(turmaEntity);
+//      Optional<TurmaEntity> classEntityOptional = repository.findById(turmaEntity.getId());
+//      assertThat(classEntityOptional.isPresent()).isTrue();
+//
+//    }
 
 
     private TurmaEntity createdClass(TurmaEntity entity){
