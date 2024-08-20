@@ -21,8 +21,12 @@ public class TurmaService {
     @Autowired
     TurmaMapper turmaMapper;
 
-    public List<TurmaEntity> findAll() {
-        return turmaRepository.findAll();
+
+
+    public List<ResponseTurmaDTO> findAll() {
+        List<TurmaEntity> turmas = turmaRepository.findAll();
+        return turmaMapper.convertListEntityForDTO(turmas);
+
     }
 
     public ResponseTurmaDTO createdTurma(RequestTurmaDTO turma) {
