@@ -47,6 +47,10 @@
 			<version>1.5</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.hateoas</groupId>
+			<artifactId>spring-hateoas</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -62,6 +66,18 @@
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
