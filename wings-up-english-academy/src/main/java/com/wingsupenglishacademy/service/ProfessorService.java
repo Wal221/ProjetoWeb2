@@ -4,16 +4,14 @@ import com.wingsupenglishacademy.DTO.requests.RequestAvalicaoDTO;
 import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseAvaliacaDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
+import com.wingsupenglishacademy.controller.ProfessorController;
 import com.wingsupenglishacademy.exceptions.UserNotFoundException;
-import com.wingsupenglishacademy.mapper.DozerMapper;
-import com.wingsupenglishacademy.mapper.custom.AvaliacaoMapper;
 import com.wingsupenglishacademy.mapper.custom.ProfesorMapper;
-import com.wingsupenglishacademy.model.AvaliacaoEntity;
-import com.wingsupenglishacademy.model.Document;
 import com.wingsupenglishacademy.model.ProfessorEntity;
-import com.wingsupenglishacademy.repository.AvaliacaoRepository;
 import com.wingsupenglishacademy.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,8 +37,10 @@ ProfessorService {
     DocumentService documentService;
 
     public ResponseTeacherDTO findByIdTeacher(Long id) {
-        var teacher = teacherRepository.findById(id).get();
+        var teacher = teacherRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Teacher Not found"));
         ResponseTeacherDTO responseTeacherDTO = mapper.convertToTeacherDTO(teacher);
+
+        responseTeacherDTO.add(linkTo(methodOn(ProfessorController.class).findTeacherByIdDTO(responseTeacherDTO.getKey())).withSelfRel());
         return responseTeacherDTO;
     }
 
@@ -50,8 +50,10 @@ ProfessorService {
         return teacher;
     }
 
-    public List<ProfessorEntity> getAllTeachers() {
-        return teacherRepository.findAll();
+    public List<ResponseTeacherDTO> getAllTeachers() {
+      List<ProfessorEntity> teachers = teacherRepository.findAll();
+
+        return mapper.convertListEntityForDTO(teachers);
     }
 
 
