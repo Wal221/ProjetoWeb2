@@ -50,7 +50,12 @@ public class AvaliacaoService {
         return avaliacaoRepository.save(avaliacaoEntity);
     }
 
-    public AvaliacaoEntity update(AvaliacaoEntity avaliacaoEntity) { return avaliacaoRepository.save(avaliacaoEntity);}
+    public ResponseAvaliacaDTO update(RequestAvalicaoDTO avaliacaoDTO) {
+        var prova = DozerMapper.parseObject(avaliacaoDTO, AvaliacaoEntity.class);
+        avaliacaoRepository.save(prova);
+        return DozerMapper.parseObject(prova, ResponseAvaliacaDTO.class);
+
+    }
 
     public void delete(AvaliacaoEntity avaliacaoEntity) {avaliacaoRepository.delete(avaliacaoEntity);}
 

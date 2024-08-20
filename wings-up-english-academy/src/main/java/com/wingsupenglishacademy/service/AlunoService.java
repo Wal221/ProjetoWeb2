@@ -6,7 +6,10 @@ import com.wingsupenglishacademy.DTO.responses.ResponseTurmaDTO;
 import com.wingsupenglishacademy.mapper.custom.StudentMapper;
 import com.wingsupenglishacademy.mapper.custom.TurmaMapper;
 import com.wingsupenglishacademy.model.AlunoEntity;
+import com.wingsupenglishacademy.model.AvaliacaoEntity;
 import com.wingsupenglishacademy.model.Document;
+import com.wingsupenglishacademy.model.Enum.StatusAvalicao;
+import com.wingsupenglishacademy.repository.AvaliacaoRepository;
 import com.wingsupenglishacademy.repository.DocumentRepository;
 import com.wingsupenglishacademy.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,10 @@ public class AlunoService {
 
     @Autowired
     private DocumentRepository documentRepository;
+
+    @Autowired
+    private AvaliacaoRepository avaliacaoRepository;
+
 
     @Autowired
     TurmaService turmaService;
@@ -86,6 +93,21 @@ public class AlunoService {
         }
         else {
             throw new RuntimeException("Turma sem vagas");
+        }
+    }
+
+    public void realizarProvar(Long idAluno,Long idProva){
+        AlunoEntity aluno = alunoRepository.findById(idAluno).get();
+
+        if(aluno.getAvaliacao() != null){
+            AvaliacaoEntity avaliacao = avaliacaoRepository.getReferenceById(idProva);
+            this.avaliacaoRepository.save(avaliacao);
+            this.alunoRepository.updateStatus(idAluno,idProva, StatusAvalicao.NAO_REALIZADO);
+
+
+        }
+        else{
+            throw new RuntimeException("Aluno não possui provas");
         }
     }
 }

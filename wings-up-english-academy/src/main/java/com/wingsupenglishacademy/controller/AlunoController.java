@@ -76,4 +76,11 @@ public class AlunoController {
         return new ResponseEntity<>(this.alunoService.matricularTurma(requestAlunoDTO,idTurma), HttpStatus.OK);
     }
 
+
+    @PutMapping("/realiza-avaliaca/{idAluno}/{idProva}")
+        public ResponseEntity<String> realizarAvaliacao(@PathVariable Long idAluno, @PathVariable Long idProva) {
+         this.alunoService.realizarProvar(idAluno, idProva);
+         return ResponseEntity.ok("Avaliação realizada com sucesso!");
+        }
+
 }

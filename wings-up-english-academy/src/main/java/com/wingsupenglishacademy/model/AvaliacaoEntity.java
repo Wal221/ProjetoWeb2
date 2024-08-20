@@ -34,8 +34,12 @@ public class AvaliacaoEntity implements Serializable {
     private ProfessorEntity professor;
 
     @ManyToMany
-    @Column(nullable = true)
-    private List<AlunoEntity> alunos = new ArrayList<>(); // quais alunos vai ter acesso a essa avaliação  ?
+    @JoinTable(
+            name = "students_avaliacao",
+            joinColumns = @JoinColumn(name = "avaliacao_id"),
+            inverseJoinColumns = @JoinColumn(name = "AlunoEntity_id")
+    )
+    private List<AlunoEntity> students = new ArrayList<>(); // quais alunos vai ter acesso a essa avaliação  ?
 
 
     public AvaliacaoEntity(Long id, TipoAvaliacao tipoAvalicao, Date dataAvalicao, Double valorAvalicao, ProfessorEntity professor, List<AlunoEntity> alunos) {
@@ -44,7 +48,7 @@ public class AvaliacaoEntity implements Serializable {
         this.dataAvalicao = dataAvalicao;
         this.valorAvalicao = valorAvalicao;
         this.professor = professor;
-        this.alunos = alunos;
+        this.students = alunos;
     }
 
     public AvaliacaoEntity() {}
@@ -95,11 +99,11 @@ public class AvaliacaoEntity implements Serializable {
     }
 
     public List<AlunoEntity> getAlunos() {
-        return alunos;
+        return students;
     }
 
     public void setAlunos(List<AlunoEntity> alunos) {
-        this.alunos = alunos;
+        this.students = alunos;
     }
 
     public StatusAvalicao getStatus() {
