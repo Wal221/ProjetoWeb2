@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.controller;
 
-import com.wingsupenglishacademy.DTO.requests.RequestTurmaDTO;
-import com.wingsupenglishacademy.DTO.responses.ResponseTurmaDTO;
+import com.wingsupenglishacademy.repository.DTO.requests.RequestTurmaDTO;
+import com.wingsupenglishacademy.repository.DTO.responses.ResponseTurmaDTO;
 import com.wingsupenglishacademy.model.TurmaEntity;
 import com.wingsupenglishacademy.service.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class TurmaController {
     }
 
     @GetMapping(value = "/classes")
-    public ResponseEntity<List<TurmaEntity>> getAllClasses() {
+    public ResponseEntity<List<ResponseTurmaDTO>> getAllClasses() {
         return new ResponseEntity<>(turmaService.findAll(), HttpStatus.OK);
     }
 }
