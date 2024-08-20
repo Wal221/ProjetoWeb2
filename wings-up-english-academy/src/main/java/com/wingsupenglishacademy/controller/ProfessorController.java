@@ -1,9 +1,9 @@
 package com.wingsupenglishacademy.controller;
 
-import com.wingsupenglishacademy.DTO.requests.RequestAvalicaoDTO;
-import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
-import com.wingsupenglishacademy.DTO.responses.ResponseAvaliacaDTO;
-import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
+import com.wingsupenglishacademy.repository.DTO.requests.RequestAvalicaoDTO;
+import com.wingsupenglishacademy.repository.DTO.requests.RequestProfessorDTO;
+import com.wingsupenglishacademy.repository.DTO.responses.ResponseAvaliacaDTO;
+import com.wingsupenglishacademy.repository.DTO.responses.ResponseTeacherDTO;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class ProfessorController {
     }
 
     @GetMapping(value = "/teaches")
-    public ResponseEntity<List<ProfessorEntity>> getAllStudents() {
+    public ResponseEntity<List<ResponseTeacherDTO>> getAllStudents() {
         return ResponseEntity.ok().body(professorService.getAllTeachers());
     }
 
@@ -61,8 +61,8 @@ public class ProfessorController {
         return new ResponseEntity<>(professorService.criarAvaliacao(avalicaoDTO),HttpStatus.CREATED);
     }
 
-    @PostMapping("/update-materia/{id}")
-    public ResponseEntity<String> updateMaterial(@RequestParam("file") MultipartFile file, @PathVariable Long id) throws IOException {
+    @PostMapping("/create-materia/{id}")
+    public ResponseEntity<String> createdMaterial(@RequestParam("file") MultipartFile file, @PathVariable Long id) throws IOException {
        ;
         return new ResponseEntity<>( professorService.exportaMeterial(id,file), HttpStatus.OK);
     }
