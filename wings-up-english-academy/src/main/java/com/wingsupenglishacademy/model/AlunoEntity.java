@@ -27,6 +27,9 @@ public class AlunoEntity extends UsuarioEntity implements Serializable {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<AvaliacaoEntity> avaliacao = new ArrayList<>();
 
+    @OneToMany
+    private List<AulaEntity> aulas = new ArrayList<>() ;
+
     public AlunoEntity() {
         super();
 
