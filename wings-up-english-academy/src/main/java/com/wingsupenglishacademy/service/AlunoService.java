@@ -1,10 +1,15 @@
 package com.wingsupenglishacademy.service;
 
 import com.wingsupenglishacademy.DTO.requests.RequestAlunoDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestTurmaDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseStudentDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseTurmaDTO;
+import com.wingsupenglishacademy.exceptions.UserNotFoundException;
 import com.wingsupenglishacademy.mapper.custom.StudentMapper;
+import com.wingsupenglishacademy.mapper.custom.TurmaMapper;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.model.Document;
+import com.wingsupenglishacademy.model.TurmaEntity;
 import com.wingsupenglishacademy.repository.DocumentRepository;
 import com.wingsupenglishacademy.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +32,12 @@ public class AlunoService {
 
     @Autowired
     private DocumentRepository documentRepository;
+
+    @Autowired
+    TurmaService turmaService;
+
+    @Autowired
+    TurmaMapper turmaMapper;
 
     public AlunoEntity findByIdStudent(Long id) {
         return studentRepository.findById(id).get();
@@ -64,5 +75,20 @@ public class AlunoService {
         return ResponseEntity.ok()
                 .headers(headers)
                 .body(new ByteArrayResource(document.getData()));
+    }
+
+    public ResponseTurmaDTO matricularTurma(RequestAlunoDTO aluno, Long idTurma) {
+        var turma = turmaService.findById(idTurma);
+        if(turma.getStudents().size() < turma.getNumVagas()){
+            var entity = studentMapper.convertToStudentDTO(aluno);
+            turma.getStudents().add(entity);
+            turma.setNumVagas(turma.getNumVagas() - 1);
+
+            var turmEntity =  this.turmaService.update(turma);
+            return turmaMapper.convertEntityForDTO(turmEntity);
+        }
+        else {
+            throw new RuntimeException("Turma sem vagas");
+        }
     }
 }
