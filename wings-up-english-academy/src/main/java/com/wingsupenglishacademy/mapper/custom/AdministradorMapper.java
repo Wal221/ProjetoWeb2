@@ -1,8 +1,10 @@
 package com.wingsupenglishacademy.mapper.custom;
 
-import com.wingsupenglishacademy.repository.DTO.responses.ResponseAdministradorDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseAdministradorDTO;
 import com.wingsupenglishacademy.model.AdministradorEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AdministradorMapper {
