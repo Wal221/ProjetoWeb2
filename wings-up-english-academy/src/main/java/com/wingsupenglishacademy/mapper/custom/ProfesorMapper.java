@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.mapper.custom;
 
-import com.wingsupenglishacademy.repository.DTO.requests.RequestProfessorDTO;
-import com.wingsupenglishacademy.repository.DTO.responses.ResponseTeacherDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
 import com.wingsupenglishacademy.model.TurmaEntity;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.service.TurmaService;

@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.mapper.custom;
 
 
-import com.wingsupenglishacademy.repository.DTO.responses.ResponseTurmaDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseTurmaDTO;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.model.TurmaEntity;
 import org.springframework.stereotype.Service;

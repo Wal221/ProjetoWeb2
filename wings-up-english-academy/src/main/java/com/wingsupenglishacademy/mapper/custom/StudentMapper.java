@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.mapper.custom;
 
-import com.wingsupenglishacademy.repository.DTO.requests.RequestAlunoDTO;
-import com.wingsupenglishacademy.repository.DTO.responses.ResponseStudentDTO;
+import com.wingsupenglishacademy.DTO.requests.RequestAlunoDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseStudentDTO;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.service.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
