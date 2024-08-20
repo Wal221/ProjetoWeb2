@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -52,8 +53,14 @@ ProfessorService {
 
     public List<ResponseProfessorDTO> getAllTeachers() {
       List<ProfessorEntity> teachers = teacherRepository.findAll();
+      List<ResponseProfessorDTO> responseProfessorDTOS = mapper.convertListEntityForDTO(teachers);
 
-        return mapper.convertListEntityForDTO(teachers);
+      responseProfessorDTOS
+              .stream()
+              .forEach(p -> p.add(linkTo(methodOn(ProfessorController.class).findTeacherByIdDTO(p.getKey())).withSelfRel()));
+
+      return responseProfessorDTOS;
+
     }
 
 
