@@ -1,17 +1,14 @@
 package com.wingsupenglishacademy.service;
 
 import com.wingsupenglishacademy.DTO.requests.RequestAlunoDTO;
-import com.wingsupenglishacademy.DTO.requests.RequestTurmaDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseStudentDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseTurmaDTO;
-import com.wingsupenglishacademy.exceptions.UserNotFoundException;
 import com.wingsupenglishacademy.mapper.custom.StudentMapper;
 import com.wingsupenglishacademy.mapper.custom.TurmaMapper;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.model.Document;
-import com.wingsupenglishacademy.model.TurmaEntity;
 import com.wingsupenglishacademy.repository.DocumentRepository;
-import com.wingsupenglishacademy.repository.StudentRepository;
+import com.wingsupenglishacademy.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -25,7 +22,7 @@ public class AlunoService {
 
 
     @Autowired
-    private StudentRepository studentRepository;
+    private AlunoRepository alunoRepository;
 
     @Autowired
     private StudentMapper studentMapper;
@@ -40,26 +37,26 @@ public class AlunoService {
     TurmaMapper turmaMapper;
 
     public AlunoEntity findByIdStudent(Long id) {
-        return studentRepository.findById(id).get();
+        return alunoRepository.findById(id).get();
     }
 
 
     public List<AlunoEntity> findAllStudent() {
-        return studentRepository.findAll();
+        return alunoRepository.findAll();
     }
 
     public ResponseStudentDTO createdStudent(RequestAlunoDTO studentDTO) {
         var entity = studentMapper.convertToStudentDTO(studentDTO);
-        studentRepository.save(entity);
+        alunoRepository.save(entity);
         return studentMapper.convertToEntityStudentDTO(entity);
     }
 
     public AlunoEntity updateStudent(AlunoEntity alunoEntity) {
-        return studentRepository.save(alunoEntity);
+        return alunoRepository.save(alunoEntity);
     }
 
     public void deleteStudent(AlunoEntity alunoEntity) {
-        studentRepository.delete(alunoEntity);
+        alunoRepository.delete(alunoEntity);
     }
 
 

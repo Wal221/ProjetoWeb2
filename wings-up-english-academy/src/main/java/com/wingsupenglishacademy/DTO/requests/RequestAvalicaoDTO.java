@@ -1,6 +1,7 @@
 package com.wingsupenglishacademy.DTO.requests;
 
 import com.github.dozermapper.core.Mapping;
+import com.wingsupenglishacademy.model.Enum.StatusAvalicao;
 import com.wingsupenglishacademy.model.Enum.TipoAvaliacao;
 
 import java.util.Date;
@@ -17,7 +18,9 @@ public class RequestAvalicaoDTO {
     private Date dataAvalicao;
     private Double valorAvalicao;
     private Long idProfesso;
-    private List<Long> idAlunos;
+    private StatusAvalicao status;
+
+
     public RequestAvalicaoDTO() {
     }
 
@@ -36,6 +39,14 @@ public class RequestAvalicaoDTO {
 
     public void setKey(Long key) {
         this.key = key;
+    }
+
+    public StatusAvalicao getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusAvalicao status) {
+        this.status = status;
     }
 
     public Double getNota() {
@@ -78,13 +89,7 @@ public class RequestAvalicaoDTO {
         this.idProfesso = idProfesso;
     }
 
-    public List<Long> getIdAlunos() {
-        return idAlunos;
-    }
 
-    public void setIdAlunos(List<Long> idAlunos) {
-        this.idAlunos = idAlunos;
-    }
 
     @Override
     public String toString() {

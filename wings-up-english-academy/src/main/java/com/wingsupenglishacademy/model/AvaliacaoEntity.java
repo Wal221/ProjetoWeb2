@@ -34,7 +34,7 @@ public class AvaliacaoEntity implements Serializable {
     private ProfessorEntity professor;
 
     @ManyToMany
-    @Column(nullable = false)
+    @Column(nullable = true)
     private List<AlunoEntity> alunos = new ArrayList<>(); // quais alunos vai ter acesso a essa avaliação  ?
 
 
@@ -100,6 +100,14 @@ public class AvaliacaoEntity implements Serializable {
 
     public void setAlunos(List<AlunoEntity> alunos) {
         this.alunos = alunos;
+    }
+
+    public StatusAvalicao getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusAvalicao status) {
+        this.status = status;
     }
 
     @Override

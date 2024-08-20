@@ -32,12 +32,7 @@ public class AvaliacaoMapper {
 
         avaliacaoEntity.setValorAvalicao(avalicaoDTO.getValorAvalicao());
         avaliacaoEntity.setTipoAvalicao(avalicaoDTO.getTipoAvalicao());
-        for (int i = 0; i < avalicaoDTO.getIdAlunos().size(); i++) {
-            //pego os IDs dos alunos eles atraves dos seu Id.
-            AlunoEntity aluno = alunoService.findByIdStudent(avalicaoDTO.getIdAlunos().get(i));
-            avaliacaoEntity.getAlunos().add(aluno);
 
-        }
         return avaliacaoEntity;
 
     }

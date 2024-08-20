@@ -3,6 +3,7 @@ package com.wingsupenglishacademy.service;
 import com.wingsupenglishacademy.DTO.requests.RequestAvalicaoDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseAvaliacaDTO;
 import com.wingsupenglishacademy.mapper.DozerMapper;
+import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.model.AvaliacaoEntity;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.repository.AvaliacaoRepository;
@@ -24,9 +25,21 @@ public class AvaliacaoService {
     public List<AvaliacaoEntity> findAll() {return avaliacaoRepository.findAll();}
 
     public ResponseAvaliacaDTO createdAvalicao(RequestAvalicaoDTO avaliacaoDTO) {
+
         var prova = DozerMapper.parseObject(avaliacaoDTO, AvaliacaoEntity.class);
-        prova.setProfessor(teacherRepository.getReferenceById(avaliacaoDTO.getIdProfesso()));
+        ProfessorEntity professor =  teacherRepository.getReferenceById(avaliacaoDTO.getIdProfesso());
+
+        prova.setProfessor(professor);
+
+        //busco os alunos da classe do professor
+        List<AlunoEntity> alunos = professor.getClassEntity().getStudents();
+
+        for(AlunoEntity aluno : alunos){
+            aluno.getAvaliacao().add(prova);
+        }
         avaliacaoRepository.save(prova);
+
+
         return DozerMapper.parseObject(prova, ResponseAvaliacaDTO.class);
 
     }
