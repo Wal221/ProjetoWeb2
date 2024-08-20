@@ -3,7 +3,7 @@ package com.wingsupenglishacademy.service;
 import com.wingsupenglishacademy.DTO.requests.RequestAvalicaoDTO;
 import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseAvaliacaDTO;
-import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseProfessorDTO;
 import com.wingsupenglishacademy.controller.ProfessorController;
 import com.wingsupenglishacademy.exceptions.UserNotFoundException;
 import com.wingsupenglishacademy.mapper.custom.ProfesorMapper;
@@ -36,12 +36,12 @@ ProfessorService {
     @Autowired
     DocumentService documentService;
 
-    public ResponseTeacherDTO findByIdTeacher(Long id) {
+    public ResponseProfessorDTO findByIdTeacher(Long id) {
         var teacher = teacherRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Teacher Not found"));
-        ResponseTeacherDTO responseTeacherDTO = mapper.convertToTeacherDTO(teacher);
+        ResponseProfessorDTO responseProfessorDTO = mapper.convertToTeacherDTO(teacher);
 
-        responseTeacherDTO.add(linkTo(methodOn(ProfessorController.class).findTeacherByIdDTO(responseTeacherDTO.getKey())).withSelfRel());
-        return responseTeacherDTO;
+        responseProfessorDTO.add(linkTo(methodOn(ProfessorController.class).findTeacherByIdDTO(responseProfessorDTO.getKey())).withSelfRel());
+        return responseProfessorDTO;
     }
 
     public ProfessorEntity findByTeacherIdEntity(Long id) {
@@ -50,20 +50,20 @@ ProfessorService {
         return teacher;
     }
 
-    public List<ResponseTeacherDTO> getAllTeachers() {
+    public List<ResponseProfessorDTO> getAllTeachers() {
       List<ProfessorEntity> teachers = teacherRepository.findAll();
 
         return mapper.convertListEntityForDTO(teachers);
     }
 
 
-    public ResponseTeacherDTO createdTeacher(RequestProfessorDTO teacherDTO) {
+    public ResponseProfessorDTO createdTeacher(RequestProfessorDTO teacherDTO) {
         // converto o DTO para class para pode Salvalo
         ProfessorEntity teacherAux = mapper.convertToTeacherEntity(teacherDTO);
 
         this.teacherRepository.save(teacherAux);
-        ResponseTeacherDTO responseTeacherDTO = this.mapper.convertToTeacherDTO(teacherAux);
-        return responseTeacherDTO;
+        ResponseProfessorDTO responseProfessorDTO = this.mapper.convertToTeacherDTO(teacherAux);
+        return responseProfessorDTO;
 
 
     }

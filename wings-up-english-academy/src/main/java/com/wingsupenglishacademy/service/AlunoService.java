@@ -1,9 +1,11 @@
 package com.wingsupenglishacademy.service;
 
 import com.wingsupenglishacademy.DTO.requests.RequestAlunoDTO;
-import com.wingsupenglishacademy.DTO.responses.ResponseStudentDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseAlunoDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseTurmaDTO;
-import com.wingsupenglishacademy.mapper.custom.StudentMapper;
+import com.wingsupenglishacademy.mapper.DozerMapper;
+import com.wingsupenglishacademy.mapper.custom.AvaliacaoMapper;
+import com.wingsupenglishacademy.mapper.custom.AlunoMapper;
 import com.wingsupenglishacademy.mapper.custom.TurmaMapper;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.model.AvaliacaoEntity;
@@ -28,13 +30,16 @@ public class AlunoService {
     private AlunoRepository alunoRepository;
 
     @Autowired
-    private StudentMapper studentMapper;
+    private AlunoMapper alunoMapper;
 
     @Autowired
     private DocumentRepository documentRepository;
 
     @Autowired
     private AvaliacaoRepository avaliacaoRepository;
+
+    @Autowired
+    private AvaliacaoMapper avali;
 
 
     @Autowired
@@ -43,27 +48,29 @@ public class AlunoService {
     @Autowired
     TurmaMapper turmaMapper;
 
-    public AlunoEntity findByIdStudent(Long id) {
-        return alunoRepository.findById(id).get();
+    public ResponseAlunoDTO findByIdStudent(Long id) {
+        AlunoEntity aluno = alunoRepository.findById(id).get();
+       return alunoMapper.convertToEntityStudentDTO(aluno);
     }
 
 
-    public List<AlunoEntity> findAllStudent() {
-        return alunoRepository.findAll();
+    public List<ResponseAlunoDTO> findAllStudent() {
+               return alunoMapper.convertListEntityForDTO(alunoRepository.findAll()) ;
     }
 
-    public ResponseStudentDTO createdStudent(RequestAlunoDTO studentDTO) {
-        var entity = studentMapper.convertToStudentDTO(studentDTO);
+    public ResponseAlunoDTO createdStudent(RequestAlunoDTO studentDTO) {
+        var entity = alunoMapper.convertToStudentDTO(studentDTO);
         alunoRepository.save(entity);
-        return studentMapper.convertToEntityStudentDTO(entity);
+        return alunoMapper.convertToEntityStudentDTO(entity);
     }
 
     public AlunoEntity updateStudent(AlunoEntity alunoEntity) {
         return alunoRepository.save(alunoEntity);
     }
 
-    public void deleteStudent(AlunoEntity alunoEntity) {
-        alunoRepository.delete(alunoEntity);
+    public void deleteStudent(Long id) {
+        this.alunoRepository.deleteById(id);
+
     }
 
 
@@ -84,7 +91,7 @@ public class AlunoService {
     public ResponseTurmaDTO matricularTurma(RequestAlunoDTO aluno, Long idTurma) {
         var turma = turmaService.findById(idTurma);
         if(turma.getStudents().size() < turma.getNumVagas()){
-            var entity = studentMapper.convertToStudentDTO(aluno);
+            var entity = alunoMapper.convertToStudentDTO(aluno);
             turma.getStudents().add(entity);
             turma.setNumVagas(turma.getNumVagas() - 1);
 
@@ -109,5 +116,13 @@ public class AlunoService {
         else{
             throw new RuntimeException("Aluno não possui provas");
         }
+    }
+
+    public ResponseAlunoDTO vizualizarHistorico(Long id){
+        var estudante= alunoRepository.findById(id).get();
+
+
+        return alunoMapper.convertToEntityStudentDTO(estudante);
+
     }
 }

@@ -17,8 +17,6 @@ public class AvaliacaoMapper {
     @Autowired
     ProfessorService professorService;
 
-    @Autowired
-    AlunoService alunoService;
 
 
     public AvaliacaoEntity convertToDTOEntity(RequestAvalicaoDTO avalicaoDTO) {

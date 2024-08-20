@@ -12,6 +12,8 @@ import java.io.Serializable;
 public class AdministradorEntity extends UsuarioEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
+
+
     public AdministradorEntity(Long id, String name, String enroll, Double grade, String email, String telephone) {
         super(id, name, email, telephone);
     }

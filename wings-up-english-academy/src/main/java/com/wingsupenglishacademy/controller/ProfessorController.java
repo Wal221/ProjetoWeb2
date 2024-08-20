@@ -3,7 +3,7 @@ package com.wingsupenglishacademy.controller;
 import com.wingsupenglishacademy.DTO.requests.RequestAvalicaoDTO;
 import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseAvaliacaDTO;
-import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseProfessorDTO;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +23,13 @@ public class ProfessorController {
     private ProfessorService professorService;
 
     @GetMapping(value = "/DTO/{id}")
-    public ResponseEntity<ResponseTeacherDTO> findTeacherByIdDTO(@PathVariable Long id) {
+    public ResponseEntity<ResponseProfessorDTO> findTeacherByIdDTO(@PathVariable Long id) {
         return new ResponseEntity<>(  professorService.findByIdTeacher(id), HttpStatus.OK);
     }
 
 
     @PostMapping(value = "/create-professor")
-    public ResponseEntity<ResponseTeacherDTO> createTeacher(@RequestBody RequestProfessorDTO teacher) {
+    public ResponseEntity<ResponseProfessorDTO> createTeacher(@RequestBody RequestProfessorDTO teacher) {
         return new ResponseEntity<>(professorService.createdTeacher(teacher), HttpStatus.CREATED);
     }
 
@@ -42,8 +42,8 @@ public class ProfessorController {
 
 
     @DeleteMapping
-    public ResponseEntity<ResponseTeacherDTO> deleteTeacher(@PathVariable Long id) {
-        ResponseTeacherDTO student = professorService.findByIdTeacher(id);
+    public ResponseEntity<ResponseProfessorDTO> deleteTeacher(@PathVariable Long id) {
+        ResponseProfessorDTO student = professorService.findByIdTeacher(id);
         if(student != null) {
             professorService.deleteTeacher(id);
         }
@@ -52,7 +52,7 @@ public class ProfessorController {
     }
 
     @GetMapping(value = "/teaches")
-    public ResponseEntity<List<ResponseTeacherDTO>> getAllStudents() {
+    public ResponseEntity<List<ResponseProfessorDTO>> getAllStudents() {
         return ResponseEntity.ok().body(professorService.getAllTeachers());
     }
 

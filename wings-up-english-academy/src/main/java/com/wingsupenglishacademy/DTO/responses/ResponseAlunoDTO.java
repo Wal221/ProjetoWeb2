@@ -1,18 +1,19 @@
 package com.wingsupenglishacademy.DTO.responses;
 
+import java.util.List;
 import java.util.Objects;
 
-public class ResponseStudentDTO {
+public class ResponseAlunoDTO {
 
     private String name;
     private String email;
     private String telephone;
     private String enroll;
 
-    public ResponseStudentDTO() {
+    public ResponseAlunoDTO() {
     }
 
-    public ResponseStudentDTO(String name, String email, String telephone, String enroll) {
+    public ResponseAlunoDTO(String name, String email, String telephone, String enroll) {
         this.name = name;
         this.email = email;
         this.telephone = telephone;
@@ -54,7 +55,7 @@ public class ResponseStudentDTO {
 
     @Override
     public String toString() {
-        return "ResponseStudentDTO{" +
+        return "ResponseAlunoDTO{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", telephone='" + telephone + '\'' +
@@ -66,7 +67,7 @@ public class ResponseStudentDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ResponseStudentDTO that = (ResponseStudentDTO) o;
+        ResponseAlunoDTO that = (ResponseAlunoDTO) o;
         return Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(telephone, that.telephone) && Objects.equals(enroll, that.enroll);
     }
 

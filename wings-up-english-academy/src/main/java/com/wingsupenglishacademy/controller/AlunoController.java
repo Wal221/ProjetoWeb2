@@ -1,10 +1,9 @@
 package com.wingsupenglishacademy.controller;
 
 import com.wingsupenglishacademy.DTO.requests.RequestAlunoDTO;
-import com.wingsupenglishacademy.DTO.responses.ResponseStudentDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseAlunoDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseTurmaDTO;
 import com.wingsupenglishacademy.model.AlunoEntity;
-import com.wingsupenglishacademy.model.TurmaEntity;
 import com.wingsupenglishacademy.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -31,15 +30,13 @@ public class AlunoController {
             MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE
     })
-    public ResponseEntity<RequestAlunoDTO> getStudentByI(@PathVariable Long id) {
-      AlunoEntity saved = alunoService.findByIdStudent(id);
-        RequestAlunoDTO requestAlunoDTO = new RequestAlunoDTO(saved);
-        return new ResponseEntity<>(requestAlunoDTO, HttpStatus.OK);
+    public ResponseEntity<ResponseAlunoDTO> getStudentByI(@PathVariable Long id) {
+        return new ResponseEntity<>(alunoService.findByIdStudent(id), HttpStatus.OK);
 
     }
 
     @PostMapping(value = "/created")
-    public ResponseEntity<ResponseStudentDTO> createStudent(@RequestBody RequestAlunoDTO studentDTO) {
+    public ResponseEntity<ResponseAlunoDTO> createStudent(@RequestBody RequestAlunoDTO studentDTO) {
 
         return new ResponseEntity<>(alunoService.createdStudent(studentDTO), HttpStatus.CREATED);
     }
@@ -51,18 +48,15 @@ public class AlunoController {
 
 
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<AlunoEntity> deleteStudent(@RequestParam Long id) {
-        AlunoEntity student = alunoService.findByIdStudent(id);
-        if(student != null) {
-            alunoService.deleteStudent(student);
-        }
+        alunoService.deleteStudent(id);
          return ResponseEntity.ok().build();
 
     }
 
     @GetMapping(value = "/students")
-    public ResponseEntity<List<AlunoEntity>> getAllStudents() {
+    public ResponseEntity<List<ResponseAlunoDTO>> getAllStudents() {
         return ResponseEntity.ok().body(alunoService.findAllStudent());
     }
 
@@ -82,5 +76,11 @@ public class AlunoController {
          this.alunoService.realizarProvar(idAluno, idProva);
          return ResponseEntity.ok("Avaliação realizada com sucesso!");
         }
+
+
+        @GetMapping("/historico/{id}")
+    public ResponseEntity<ResponseAlunoDTO>buscahistoricoProvas(@PathVariable Long id){
+        return ResponseEntity.ok(this.alunoService.vizualizarHistorico(id));
+    }
 
 }

@@ -1,14 +1,13 @@
 package com.wingsupenglishacademy.DTO.responses;
 
 import com.github.dozermapper.core.Mapping;
-import jakarta.persistence.Id;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class ResponseTeacherDTO extends RepresentationModel<ResponseTeacherDTO> implements Serializable {
+public class ResponseProfessorDTO extends RepresentationModel<ResponseProfessorDTO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -20,11 +19,11 @@ public class ResponseTeacherDTO extends RepresentationModel<ResponseTeacherDTO> 
     private String turma;
 
 
-    public ResponseTeacherDTO() {
+    public ResponseProfessorDTO() {
 
     }
 
-    public ResponseTeacherDTO(String name, String specialization, Date horarioAula, String turma) {
+    public ResponseProfessorDTO(String name, String specialization, Date horarioAula, String turma) {
         this.name = name;
         this.specialization = specialization;
         this.horarioAula = horarioAula;
@@ -73,7 +72,7 @@ public class ResponseTeacherDTO extends RepresentationModel<ResponseTeacherDTO> 
 
     @Override
     public String toString() {
-        return "ResponseTeacherDTO{" +
+        return "ResponseProfessorDTO{" +
                 "name='" + name + '\'' +
                 ", specialization='" + specialization + '\'' +
                 ", horarioAula=" + horarioAula +
@@ -85,7 +84,7 @@ public class ResponseTeacherDTO extends RepresentationModel<ResponseTeacherDTO> 
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ResponseTeacherDTO that = (ResponseTeacherDTO) o;
+        ResponseProfessorDTO that = (ResponseProfessorDTO) o;
         return Objects.equals(name, that.name) && Objects.equals(specialization, that.specialization) && Objects.equals(horarioAula, that.horarioAula) && Objects.equals(turma, that.turma);
     }
 

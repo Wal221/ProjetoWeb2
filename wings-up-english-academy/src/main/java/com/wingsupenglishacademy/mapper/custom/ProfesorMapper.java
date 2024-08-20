@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.mapper.custom;
 
 import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
-import com.wingsupenglishacademy.DTO.responses.ResponseTeacherDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseProfessorDTO;
 import com.wingsupenglishacademy.model.TurmaEntity;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.service.TurmaService;
@@ -17,8 +17,8 @@ public class ProfesorMapper {
     @Autowired
     private TurmaService turmaService;
 
-    public ResponseTeacherDTO convertToTeacherDTO(ProfessorEntity teacher) {
-        ResponseTeacherDTO response = new ResponseTeacherDTO();
+    public ResponseProfessorDTO convertToTeacherDTO(ProfessorEntity teacher) {
+        ResponseProfessorDTO response = new ResponseProfessorDTO();
         response.setKey(teacher.getId());
         response.setName(teacher.getName());
         response.setSpecialization(teacher.getEspecializacao());
@@ -41,8 +41,8 @@ public class ProfesorMapper {
         return request;
     }
 
-    public List<ResponseTeacherDTO> convertListEntityForDTO(List<ProfessorEntity> list) {
-        List<ResponseTeacherDTO> teacheResponse = new ArrayList<>();
+    public List<ResponseProfessorDTO> convertListEntityForDTO(List<ProfessorEntity> list) {
+        List<ResponseProfessorDTO> teacheResponse = new ArrayList<>();
         for(ProfessorEntity teacher : list){
             teacheResponse.add(convertToTeacherDTO(teacher));
         }
