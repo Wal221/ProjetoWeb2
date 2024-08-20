@@ -1,8 +1,7 @@
 package com.wingsupenglishacademy.mapper.custom;
 
-import com.wingsupenglishacademy.DTO.requests.RequestAvalicaoDTO;
-import com.wingsupenglishacademy.DTO.responses.ResponseAvaliacaDTO;
-import com.wingsupenglishacademy.exceptions.UserNotFoundException;
+import com.wingsupenglishacademy.repository.DTO.requests.RequestAvalicaoDTO;
+import com.wingsupenglishacademy.repository.DTO.responses.ResponseAvaliacaDTO;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.model.AvaliacaoEntity;
 import com.wingsupenglishacademy.model.ProfessorEntity;
