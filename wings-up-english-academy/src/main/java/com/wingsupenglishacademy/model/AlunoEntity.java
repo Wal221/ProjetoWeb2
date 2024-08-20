@@ -23,7 +23,9 @@ public class AlunoEntity extends UsuarioEntity implements Serializable {
     private TurmaEntity turma;
 
 
+
     @ManyToMany(fetch = FetchType.LAZY)
+    @Column(nullable = true)
     private List<AvaliacaoEntity> avaliacao;
 
     public AlunoEntity() {
@@ -69,6 +71,14 @@ public class AlunoEntity extends UsuarioEntity implements Serializable {
 
     public void setTurma(TurmaEntity turma) {
         this.turma = turma;
+    }
+
+    public List<AvaliacaoEntity> getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(List<AvaliacaoEntity> avaliacao) {
+        this.avaliacao = avaliacao;
     }
 
     @Override

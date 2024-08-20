@@ -24,7 +24,7 @@ public class TurmaEntity implements Serializable {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private EnglishLevel englishLevel;
+    private EnglishLevel englishLevel = EnglishLevel.BASICO;
 
     @Column(nullable = false)
     private String teachingMaterials; //materiais didaticos
@@ -36,23 +36,25 @@ public class TurmaEntity implements Serializable {
     @Transient
     private Boolean disponivel=true;
 
-    private final Integer numVagas = 15;
+
+    private Integer numVagas ;
 
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<AlunoEntity> students = new ArrayList<>();
+    private List<AlunoEntity> students = new ArrayList<>(3);
 
 
     public TurmaEntity() {
     }
 
-    public TurmaEntity(Long id, Date classSchedule, EnglishLevel englishLevel, String teachingMaterials, ProfessorEntity teacher, List<AlunoEntity> students) {
+    public TurmaEntity(Long id, Date classSchedule, EnglishLevel englishLevel, String teachingMaterials, ProfessorEntity teacher, Integer numVagas, List<AlunoEntity> students) {
         this.id = id;
         this.classSchedule = classSchedule;
         this.englishLevel = englishLevel;
         this.teachingMaterials = teachingMaterials;
         this.teacher = teacher;
+        this.numVagas = numVagas;
         this.students = students;
     }
 
@@ -98,6 +100,15 @@ public class TurmaEntity implements Serializable {
 
     public List<AlunoEntity> getStudents() {
         return students;
+    }
+
+
+    public Integer getNumVagas() {
+        return numVagas;
+    }
+
+    public void setNumVagas(Integer numVagas) {
+        this.numVagas = numVagas;
     }
 
     public void setStudents(List<AlunoEntity> students) {
