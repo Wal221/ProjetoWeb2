@@ -1,8 +1,8 @@
 package com.wingsupenglishacademy.controller;
 
 
-import com.wingsupenglishacademy.DTO.requests.RequestAvalicaoDTO;
-import com.wingsupenglishacademy.DTO.responses.ResponseAvaliacaDTO;
+import com.wingsupenglishacademy.repository.DTO.requests.RequestAvalicaoDTO;
+import com.wingsupenglishacademy.repository.DTO.responses.ResponseAvaliacaDTO;
 import com.wingsupenglishacademy.model.AvaliacaoEntity;
 import com.wingsupenglishacademy.service.AvaliacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
