@@ -1,7 +1,7 @@
 package com.wingsupenglishacademy.mapper.custom;
 
 
-import com.wingsupenglishacademy.DTO.responses.ResponseTurmaDTO;
+import com.wingsupenglishacademy.repository.DTO.responses.ResponseTurmaDTO;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.model.TurmaEntity;
 import org.springframework.stereotype.Service;
@@ -25,6 +25,16 @@ public class TurmaMapper {
         }
         turma.setStudents(students);
         return turma;
+    }
+
+    public List<ResponseTurmaDTO> convertListEntityForDTO(List<TurmaEntity> turmaEntityList) {
+        List<ResponseTurmaDTO> responseTurmaDTOList = new ArrayList<>();
+        for (TurmaEntity turmaEntity : turmaEntityList) {
+            responseTurmaDTOList.add(convertEntityForDTO(turmaEntity));
+
+        }
+
+        return responseTurmaDTOList;
     }
 
 }
