@@ -1,7 +1,8 @@
 package com.wingsupenglishacademy.controller;
 
-import com.wingsupenglishacademy.DTO.requests.RequestAlunoDTO;
-import com.wingsupenglishacademy.DTO.responses.ResponseStudentDTO;
+import com.wingsupenglishacademy.repository.DTO.requests.RequestAlunoDTO;
+import com.wingsupenglishacademy.repository.DTO.responses.ResponseStudentDTO;
+import com.wingsupenglishacademy.repository.DTO.responses.ResponseTurmaDTO;
 import com.wingsupenglishacademy.model.AlunoEntity;
 import com.wingsupenglishacademy.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,11 @@ public class AlunoController {
     @GetMapping("/material/{id}")
     public ResponseEntity<ByteArrayResource> download(@PathVariable Long id) {
         return alunoService.download(id);
+    }
+
+    @PostMapping("/matricula/{idTurma}")
+    public ResponseEntity<ResponseTurmaDTO> matriculaTurma(@RequestBody RequestAlunoDTO requestAlunoDTO , @PathVariable Long idTurma) {
+        return new ResponseEntity<>(this.alunoService.matricularTurma(requestAlunoDTO,idTurma), HttpStatus.OK);
     }
 
 }
