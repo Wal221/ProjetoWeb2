@@ -1,12 +1,16 @@
 package com.wingsupenglishacademy.service;
 
+import com.wingsupenglishacademy.DTO.requests.RequestAulaDTO;
 import com.wingsupenglishacademy.DTO.requests.RequestAvalicaoDTO;
 import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseAulaDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseAvaliacaDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseProfessorDTO;
 import com.wingsupenglishacademy.controller.ProfessorController;
 import com.wingsupenglishacademy.exceptions.UserNotFoundException;
+import com.wingsupenglishacademy.mapper.custom.AulaMapper;
 import com.wingsupenglishacademy.mapper.custom.ProfesorMapper;
+import com.wingsupenglishacademy.model.AulaEntity;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,17 +41,25 @@ ProfessorService {
     @Autowired
     DocumentService documentService;
 
+    @Autowired
+    AulaService aulaService;
+
+    @Autowired
+    AulaMapper aulaMapper;
+
     public ResponseProfessorDTO findByIdTeacher(Long id) {
         var teacher = teacherRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Teacher Not found"));
         ResponseProfessorDTO responseProfessorDTO = mapper.convertToTeacherDTO(teacher);
+        RequestAvalicaoDTO requestAvalicaoDTO = new RequestAvalicaoDTO();
 
-        responseProfessorDTO.add(linkTo(methodOn(ProfessorController.class).findTeacherByIdDTO(responseProfessorDTO.getKey())).withSelfRel());
+        responseProfessorDTO.add(linkTo(methodOn(ProfessorController.class).createAvaliaca(requestAvalicaoDTO)).withSelfRel());
         return responseProfessorDTO;
     }
 
     public ProfessorEntity findByTeacherIdEntity(Long id) {
 
         var teacher = teacherRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Teacher not Found"));
+
         return teacher;
     }
 
@@ -67,6 +79,7 @@ ProfessorService {
     public ResponseProfessorDTO createdTeacher(RequestProfessorDTO teacherDTO) {
         // converto o DTO para class para pode Salvalo
         ProfessorEntity teacherAux = mapper.convertToTeacherEntity(teacherDTO);
+
 
         this.teacherRepository.save(teacherAux);
         ResponseProfessorDTO responseProfessorDTO = this.mapper.convertToTeacherDTO(teacherAux);
@@ -106,5 +119,18 @@ ProfessorService {
         return "Documento Criado";
     }
 
+
+    public ResponseAulaDTO ministrAula(RequestAulaDTO aula){
+        ProfessorEntity professor = this.findByTeacherIdEntity(aula.getProfessor().getId());
+        if (professor == null) {
+            throw new IllegalArgumentException("Professor não encontrado com o ID fornecido.");
+        }
+        aula.setProfessor(professor);
+        aula.setAlunos(professor.getTurmaEntity().getStudents());
+        AulaEntity aulaEntity = aulaMapper.parserDTOForEntity(aula);
+        this.aulaService.create(aulaEntity);
+
+        return aulaMapper.convertEntityForDTO(aulaEntity);
+    }
 
 }

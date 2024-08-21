@@ -27,8 +27,6 @@ public class AlunoEntity extends UsuarioEntity implements Serializable {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<AvaliacaoEntity> avaliacao = new ArrayList<>();
 
-    @OneToMany
-    private List<AulaEntity> aulas = new ArrayList<>() ;
 
     public AlunoEntity() {
         super();
@@ -82,6 +80,7 @@ public class AlunoEntity extends UsuarioEntity implements Serializable {
     public void setAvaliacao(List<AvaliacaoEntity> avaliacao) {
         this.avaliacao = avaliacao;
     }
+
 
     @Override
     public String toString() {

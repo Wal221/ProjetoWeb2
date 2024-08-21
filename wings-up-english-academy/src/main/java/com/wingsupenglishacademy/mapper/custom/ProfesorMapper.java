@@ -25,7 +25,7 @@ public class ProfesorMapper {
         response.setHorarioAula(teacher.getHorarioAula());
 
         //criar uma consulta para alterna a tabela e adicona na turma com  o ID refernete , pois da manaiera que esta agora
-        //basicamanete estou apenas realizando uma consulta e adiciondo o nome dela euma varival.
+        //basicamanete estou apenas realizando uma consulta e adiciondo o nome dela a uma variavel.
         response.setTurma(teacher.getClassEntity().getEnglishLevel().toString());
         return response;
     }
@@ -61,6 +61,7 @@ public class ProfesorMapper {
         teacher.setSalary(request.getSalary());
         TurmaEntity turma = this.turmaService.findById(request.getClassEntity());
         teacher.setClassEntity(turma);
+        this.turmaService.update(turma);
         return teacher;
     }
 }

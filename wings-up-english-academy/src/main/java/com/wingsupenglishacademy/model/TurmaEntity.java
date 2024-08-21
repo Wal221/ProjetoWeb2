@@ -33,7 +33,7 @@ public class TurmaEntity implements Serializable {
     @OneToOne
     private ProfessorEntity teacher;
 
-    @Transient
+    @Transient// não transforma esse atributo em um ID
     private Boolean disponivel=true;
 
 

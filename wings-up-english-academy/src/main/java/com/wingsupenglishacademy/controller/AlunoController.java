@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/alunos")
 @Tag(name = "aluno-controller", description = "Controller para gerenciamento de alunos")
+@RequestMapping("/alunos")
 public class AlunoController {
 
     @Autowired
@@ -95,6 +95,7 @@ public class AlunoController {
     @Operation(summary = "Matrícula aluno em uma turma", description = "Matrícula um aluno em uma turma específica")
     @ApiResponse(description = "Aluno matriculado com sucesso", responseCode = "200", content = @Content(schema = @Schema(implementation = ResponseTurmaDTO.class)))
     public ResponseEntity<ResponseTurmaDTO> matriculaTurma(@RequestBody RequestAlunoDTO requestAlunoDTO, @PathVariable Long idTurma) {
+
         return new ResponseEntity<>(this.alunoService.matricularTurma(requestAlunoDTO, idTurma), HttpStatus.OK);
     }
 

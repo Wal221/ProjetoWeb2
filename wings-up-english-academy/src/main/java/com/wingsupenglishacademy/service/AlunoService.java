@@ -90,11 +90,12 @@ public class AlunoService {
 
     public ResponseTurmaDTO matricularTurma(RequestAlunoDTO aluno, Long idTurma) {
         var turma = turmaService.findById(idTurma);
+
         if(turma.getStudents().size() < turma.getNumVagas()){
             var entity = alunoMapper.convertToStudentDTO(aluno);
             turma.getStudents().add(entity);
             turma.setNumVagas(turma.getNumVagas() - 1);
-
+            turma.setId(idTurma);
             var turmEntity =  this.turmaService.update(turma);
             return turmaMapper.convertEntityForDTO(turmEntity);
         }

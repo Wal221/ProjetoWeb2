@@ -19,8 +19,6 @@ public class AulaEntity implements Serializable {
     @Column(nullable = false)
     private Date diaAula;
 
-    @OneToOne
-    private ProfessorEntity professor;
 
     @Column(nullable = false)
     private Date horaAula;
@@ -30,9 +28,6 @@ public class AulaEntity implements Serializable {
 
     @Column(nullable = false)
     private Date presenca;
-
-    @OneToMany
-    private List<AlunoEntity> alunos = new ArrayList<AlunoEntity>();
 
     public AulaEntity() {
     }

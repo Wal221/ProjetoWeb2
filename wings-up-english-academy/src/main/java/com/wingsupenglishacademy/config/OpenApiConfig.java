@@ -16,7 +16,7 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("RESTful API with Java 21 and Spring Boot 3")
+                        .title("Wings up API with Java 21 and Spring Boot 3")
                         .version("v1")
                         .description("Esta API e criada para materia de Web 2")
                         .termsOfService("https://pub.erudio.com.br/meus-cursos")

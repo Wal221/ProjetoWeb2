@@ -1,9 +1,12 @@
 package com.wingsupenglishacademy.controller;
 
+import com.wingsupenglishacademy.DTO.requests.RequestAulaDTO;
 import com.wingsupenglishacademy.DTO.requests.RequestAvalicaoDTO;
 import com.wingsupenglishacademy.DTO.requests.RequestProfessorDTO;
+import com.wingsupenglishacademy.DTO.responses.ResponseAulaDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseAvaliacaDTO;
 import com.wingsupenglishacademy.DTO.responses.ResponseProfessorDTO;
+import com.wingsupenglishacademy.model.AulaEntity;
 import com.wingsupenglishacademy.model.ProfessorEntity;
 import com.wingsupenglishacademy.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +66,14 @@ public class ProfessorController {
 
     @PostMapping("/create-materia/{id}")
     public ResponseEntity<String> createdMaterial(@RequestParam("file") MultipartFile file, @PathVariable Long id) throws IOException {
-       ;
+
         return new ResponseEntity<>( professorService.exportaMeterial(id,file), HttpStatus.OK);
+    }
+
+    @PostMapping("/criar-aula")
+    public ResponseEntity<ResponseAulaDTO> ministraAula (@RequestBody RequestAulaDTO aula){
+
+        return new ResponseEntity<>( this.professorService.ministrAula(aula), HttpStatus.CREATED);
     }
 
 
